@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml:2:13-83
-INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml:2:13-83
+ADDED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml:2:13-83
+INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml:2:13-83
 	package
-		INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml
+		INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml
 	xmlns:android
-		ADDED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml:2:23-81
+		ADDED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml:2:23-81
 uses-sdk
-INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml reason: use-sdk injection requested
-INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml
-INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml
+INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml reason: use-sdk injection requested
+INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml
+INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml
+		INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest2206851601672484378.xml
+		INJECTED from C:\Users\dafat\Desktop\SDK\c4f_mobile_sdk\mobilesdk-react-native\android\build\intermediates\tmp\ProcessLibraryManifest\release\tempAndroidManifest11178507457268872157.xml

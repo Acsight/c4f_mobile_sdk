@@ -989,12 +989,12 @@ class MobileSDK private constructor(
         try {
             // Get cached config with current parameters
             val cachedConfig = configCacheManager.getCachedConfig(customParams)
-            // if (cachedConfig != null) {
-            //     Log.d("MobileSDK", "📦 Using cached configuration for current parameters")
-            //     Log.d("MobileSDK", "   • Surveys in cache: ${cachedConfig.surveys.size}")
-            //     applyConfiguration(cachedConfig, true, callback)
-            //     return
-            // }
+            if (cachedConfig != null) {
+                Log.d("MobileSDK", "📦 Using cached configuration for current parameters")
+                Log.d("MobileSDK", "   • Surveys in cache: ${cachedConfig.surveys.size}")
+                applyConfiguration(cachedConfig, true, callback)
+                return
+            }
 
             Log.d("MobileSDK", "🌐 Fetching FRESH configuration from server...")
             Log.d("MobileSDK", "   • API Key: ${apiKey.take(5)}...")
