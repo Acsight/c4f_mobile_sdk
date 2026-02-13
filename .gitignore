@@ -25,10 +25,6 @@ Thumbs.db
 /.cxx
 *.apk
 *.aar
-*.jar
 
 # Kotlin
 *.kotlin_module
-
-# Gradle (remove the redundant .gradle without slash)
-/gradle/wrapper/gradle-wrapper.jar
