@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/layout-v26/abc_screen_toolbar.xml",
+        "source": "com.c4f.mobileSDK-appcompat-1.6.1-35:/layout-v26/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/layout-v26/mtrl_calendar_month.xml",
+        "source": "com.c4f.mobileSDK-material-1.10.0-17:/layout-v26/mtrl_calendar_month.xml"
+    }
+]

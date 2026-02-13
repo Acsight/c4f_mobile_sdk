@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/xml/rn_dev_preferences.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/xml/rn_dev_preferences.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/xml/data_extraction_rules.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/xml/backup_rules.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/xml/backup_rules.xml"
+    }
+]

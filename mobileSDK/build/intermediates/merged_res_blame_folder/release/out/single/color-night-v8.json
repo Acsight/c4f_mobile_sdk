@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/color-night-v8/material_timepicker_modebutton_tint.xml",
+        "source": "com.c4f.mobileSDK-material-1.10.0-17:/color-night-v8/material_timepicker_modebutton_tint.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/color-night-v8/material_timepicker_clockface.xml",
+        "source": "com.c4f.mobileSDK-material-1.10.0-17:/color-night-v8/material_timepicker_clockface.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/color-night-v8/material_timepicker_button_stroke.xml",
+        "source": "com.c4f.mobileSDK-material-1.10.0-17:/color-night-v8/material_timepicker_button_stroke.xml"
+    }
+]

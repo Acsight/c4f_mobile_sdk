@@ -1,8 +1,8 @@
-Here is the comprehensive **SurveySDK Installation & Usage Guide** for developers who will use your SDK. This document includes the specific package manager instructions (JitPack, NPM, Pub) you requested.
+Here is the comprehensive **MobileSDK Installation & Usage Guide** for developers who will use your SDK. This document includes the specific package manager instructions (JitPack, NPM, Pub) you requested.
 
 ---
 
-# 📚 SurveySDK - Developer Guide / Geliştirici Kılavuzu
+# 📚 MobileSDK - Developer Guide / Geliştirici Kılavuzu
 
 ---
 
@@ -42,9 +42,9 @@ dependencies {
 Install the package via npm or yarn.
 
 ```bash
-npm install surveysdk-react-native
+npm install mobilesdk-react-native
 # or
-yarn add surveysdk-react-native
+yarn add mobilesdk-react-native
 
 ```
 
@@ -64,12 +64,12 @@ dependencies:
   flutter:
     sdk: flutter
   # Add the SDK here
-  surveysdk_flutter:
+  mobilesdk_flutter:
     git:
       url: https://github.com/User/Repo.git
-      path: surveysdk_flutter
+      path: mobilesdk_flutter
     # OR if published to pub.dev:
-    # surveysdk_flutter: ^1.0.0
+    # mobilesdk_flutter: ^1.0.0
 
 ```
 
@@ -84,16 +84,16 @@ Run `flutter pub get` to install.
 **`MainActivity.kt`**:
 
 ```kotlin
-import com.example.surveysdk.SurveySDK
+import com.c4f.mobileSDK.MobileSDK
 
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     
     // 1. Initialize
-    SurveySDK.initialize(this, "YOUR_API_KEY")
+    MobileSDK.initialize(this, "YOUR_API_KEY")
     
     // 2. Enable Auto-Detection
-    SurveySDK.getInstance().autoSetup(this)
+    MobileSDK.getInstance().autoSetup(this)
 }
 
 ```
@@ -104,12 +104,12 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ```javascript
 import { NativeModules } from 'react-native';
-const { SurveySDK } = NativeModules;
+const { MobileSDK } = NativeModules;
 
 // 1. Initialize
 React.useEffect(() => {
-  SurveySDK.initialize("YOUR_API_KEY");
-  SurveySDK.autoSetup();
+  MobileSDK.initialize("YOUR_API_KEY");
+  MobileSDK.autoSetup();
 }, []);
 
 ```
@@ -120,8 +120,8 @@ React.useEffect(() => {
 
 ```dart
   // 1. Initialize
-  await SurveySdkFlutter.initialize('YOUR_API_KEY');
-  await SurveySdkFlutter.autoSetup();
+  await MobileSdkFlutter.initialize('YOUR_API_KEY');
+  await MobileSdkFlutter.autoSetup();
   
   runApp(const MyApp());
 }
@@ -156,7 +156,7 @@ How to mark your UI elements so the SDK can detect them.
 **Navigation:** Add listener to `NavigationContainer`.
 
 ```javascript
-<NavigationContainer onStateChange={(s) => SurveySDK.triggerNavigationSurvey(s.routes[s.index].name)}>
+<NavigationContainer onStateChange={(s) => MobileSDK.triggerNavigationSurvey(s.routes[s.index].name)}>
 
 ```
 
@@ -229,9 +229,9 @@ dependencies {
 Paketi npm veya yarn ile kurun.
 
 ```bash
-npm install surveysdk-react-native
+npm install mobilesdk-react-native
 # veya
-yarn add surveysdk-react-native
+yarn add mobilesdk-react-native
 
 ```
 
@@ -244,10 +244,10 @@ dependencies:
   flutter:
     sdk: flutter
   # SDK'yı buraya ekleyin
-  surveysdk_flutter:
+  mobilesdk_flutter:
     git:
       url: https://github.com/User/Repo.git
-      path: surveysdk_flutter
+      path: mobilesdk_flutter
 
 ```
 
@@ -262,16 +262,16 @@ Kurmak için `flutter pub get` çalıştırın.
 **`MainActivity.kt`**:
 
 ```kotlin
-import com.example.surveysdk.SurveySDK
+import com.c4f.mobileSDK.MobileSDK
 
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     
     // 1. Başlatma
-    SurveySDK.initialize(this, "API_ANAHTARINIZ")
+    MobileSDK.initialize(this, "API_ANAHTARINIZ")
     
     // 2. Otomatik Taramayı Aç
-    SurveySDK.getInstance().autoSetup(this)
+    MobileSDK.getInstance().autoSetup(this)
 }
 
 ```
@@ -282,12 +282,12 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ```javascript
 import { NativeModules } from 'react-native';
-const { SurveySDK } = NativeModules;
+const { MobileSDK } = NativeModules;
 
 // 1. Başlatma
 React.useEffect(() => {
-  SurveySDK.initialize("API_ANAHTARINIZ");
-  SurveySDK.autoSetup();
+  MobileSDK.initialize("API_ANAHTARINIZ");
+  MobileSDK.autoSetup();
 }, []);
 
 ```
@@ -297,14 +297,14 @@ React.useEffect(() => {
 **`main.dart`**:
 
 ```dart
-import 'package:surveysdk_flutter/surveysdk_flutter.dart';
+import 'package:mobilesdk_flutter/mobilesdk_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
   // 1. Başlatma
-  await SurveySdkFlutter.initialize('API_ANAHTARINIZ');
-  await SurveySdkFlutter.autoSetup();
+  await MobileSdkFlutter.initialize('API_ANAHTARINIZ');
+  await MobileSdkFlutter.autoSetup();
   
   runApp(const MyApp());
 }
@@ -339,7 +339,7 @@ Arayüz elemanlarını (butonlar, sayfalar) SDK'nın algılayabilmesi için nas�
 **Navigasyon:** `NavigationContainer` içine dinleyici ekleyin.
 
 ```javascript
-<NavigationContainer onStateChange={(s) => SurveySDK.triggerNavigationSurvey(s.routes[s.index].name)}>
+<NavigationContainer onStateChange={(s) => MobileSDK.triggerNavigationSurvey(s.routes[s.index].name)}>
 
 ```
 

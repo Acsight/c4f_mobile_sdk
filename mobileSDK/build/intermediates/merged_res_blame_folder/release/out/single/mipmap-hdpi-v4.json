@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/mipmap-hdpi-v4/ic_launcher_round.webp",
+        "source": "com.c4f.mobileSDK-main-49:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/mipmap-hdpi-v4/ic_launcher.webp",
+        "source": "com.c4f.mobileSDK-main-49:/mipmap-hdpi/ic_launcher.webp"
+    }
+]

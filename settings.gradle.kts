@@ -15,11 +15,11 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "mobile-sdk-universal"
+rootProject.name = "c4f_mobile_sdk"
 
 // CORRECT PATHS for your structure
-include(":surveysdk")
-project(":surveysdk").projectDir = file("surveysdk")
+include(":mobileSDK")
+project(":mobileSDK").projectDir = file("mobileSDK")
 
-include(":surveysdk-react-native")
-project(":surveysdk-react-native").projectDir = file("surveysdk-react-native/android")
+include(":mobilesdk-react-native")
+project(":mobilesdk-react-native").projectDir = file("mobilesdk-react-native/android")

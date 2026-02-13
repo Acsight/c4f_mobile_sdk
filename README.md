@@ -1,4 +1,4 @@
-# 🇬🇧 SurveySDK - Technical Documentation (v2.1)
+# 🇬🇧 MobileSDK - Technical Documentation (v2.1)
 
 ## 1. Architecture & File Structure
 
@@ -10,11 +10,11 @@ The project follows a **3-Tier Architecture** to separate business logic from pl
 Handles survey rules, API requests, queues, and displaying views (Dialogs/BottomSheets).
 
 ```text
-/surveysdk/src/main/java/com/example/surveysdk/
-├── SurveySDK.kt                  # 🧠 CORE SINGLETON. Manages all logic.
+/mobileSDK/src/main/java/com/example/mobileSDK/
+├── MobileSDK.kt                  # 🧠 CORE SINGLETON. Manages all logic.
 ├── Config.kt                     # Data Models (SurveyConfig, Triggers).
 ├── core/SurveyPlatform.kt        # Interface contract.
-└── android/AndroidSurveySDK.kt   # 🔌 WRAPPER. The interface React Native/Flutter talks to.
+└── android/AndroidMobileSDK.kt   # 🔌 WRAPPER. The interface React Native/Flutter talks to.
 
 ```
 
@@ -22,9 +22,9 @@ Handles survey rules, API requests, queues, and displaying views (Dialogs/Bottom
 Uses "Continuous Scanning" to detect UI changes in React Native.
 
 ```text
-/surveysdk-react-native/android/src/.../reactnative/
-├── SurveySDKPackage.kt
-└── SurveySDKModule.kt            # 🕵️ SCANNER. Runs 'GlobalLayoutListener' to find views.
+/mobilesdk-react-native/android/src/.../reactnative/
+├── MobileSDKPackage.kt
+└── MobileSDKModule.kt            # 🕵️ SCANNER. Runs 'GlobalLayoutListener' to find views.
 
 ```
 
@@ -32,8 +32,8 @@ Uses "Continuous Scanning" to detect UI changes in React Native.
 Since Flutter draws its own pixels, this module receives signals from Dart widgets.
 
 ```text
-/surveysdk_flutter/android/src/.../surveysdk_flutter/
-├── SurveySdkFlutterPlugin.kt     # 📡 RECEIVER. Receives signals from Dart MethodChannel.
+/mobilesdk_flutter/android/src/.../mobilesdk_flutter/
+├── MobileSdkFlutterPlugin.kt     # 📡 RECEIVER. Receives signals from Dart MethodChannel.
 
 ```
 
@@ -63,7 +63,7 @@ When a user clicks a button marked for a survey:
 * **Flutter:** The `SurveyTrigger` widget captures the `onPointerUp` event.
 
 
-3. **Signal:** The ID (e.g., `"btn_checkout"`) is sent to `SurveySDK.kt`.
+3. **Signal:** The ID (e.g., `"btn_checkout"`) is sent to `MobileSDK.kt`.
 4. **Core Logic:**
 * Checks Config: Is there a survey for `"btn_checkout"`?
 * Checks Rules: Is user excluded? Is cooling period active?
@@ -81,8 +81,8 @@ Direct access. No bridge needed.
 
 ```kotlin
 // MainActivity.kt
-SurveySDK.initialize(this, "API_KEY")
-SurveySDK.getInstance().autoSetup(this)
+MobileSDK.initialize(this, "API_KEY")
+MobileSDK.getInstance().autoSetup(this)
 
 // XML Layout
 <Button android:tag="checkout_button" ... />
@@ -97,18 +97,18 @@ Uses the **Magic Scanner** to find Native IDs.
 
 ```javascript
 import { NativeModules } from 'react-native';
-const { SurveySDK } = NativeModules;
+const { MobileSDK } = NativeModules;
 
 // 1. Init
 useEffect(() => {
-  SurveySDK.initialize("API_KEY");
-  SurveySDK.autoSetup();
+  MobileSDK.initialize("API_KEY");
+  MobileSDK.autoSetup();
 }, []);
 
 // 2. Navigation
 <NavigationContainer onStateChange={(state) => {
    const route = state.routes[state.index].name;
-   SurveySDK.triggerNavigationSurvey(route);
+   MobileSDK.triggerNavigationSurvey(route);
 }}>
 
 // 3. UI
@@ -123,11 +123,11 @@ Uses **Smart Widgets** to signal the Native SDK.
 **main.dart:**
 
 ```dart
-import 'package:surveysdk_flutter/surveysdk_flutter.dart';
+import 'package:mobilesdk_flutter/mobilesdk_flutter.dart';
 
 // 1. Init
-await SurveySdkFlutter.initialize('API_KEY');
-await SurveySdkFlutter.autoSetup();
+await MobileSdkFlutter.initialize('API_KEY');
+await MobileSdkFlutter.autoSetup();
 
 // 2. Button Trigger
 SurveyTrigger(
@@ -153,7 +153,7 @@ MaterialApp(
 
 ## 4. Debugging & Testing
 
-Filter Logcat by the tag: **`SurveySDK`**
+Filter Logcat by the tag: **`MobileSDK`**
 
 * `👀 Continuous Scanning Started`: React Native scanner is active.
 * `👆 Auto-Detected Click`: A click was caught and sent to Core.
@@ -164,7 +164,7 @@ Filter Logcat by the tag: **`SurveySDK`**
 
 ---
 
-# 🇹🇷 SurveySDK - Teknik Dokümantasyon (v2.1)
+# 🇹🇷 MobileSDK - Teknik Dokümantasyon (v2.1)
 
 ## 1. Mimari ve Dosya Yapısı
 
@@ -176,11 +176,11 @@ Proje, iş mantığını platform kodlarından ayırmak için **3 Katmanlı Mima
 Anket kuralları, API istekleri, kuyruk yönetimi ve görünüm (Dialog/BottomSheet) buradadır.
 
 ```text
-/surveysdk/src/main/java/com/example/surveysdk/
-├── SurveySDK.kt                  # 🧠 CORE SINGLETON. Tüm mantık merkezi.
+/mobileSDK/src/main/java/com/example/mobileSDK/
+├── MobileSDK.kt                  # 🧠 CORE SINGLETON. Tüm mantık merkezi.
 ├── Config.kt                     # Veri Modelleri (SurveyConfig).
 ├── core/SurveyPlatform.kt        # Arayüz sözleşmesi.
-└── android/AndroidSurveySDK.kt   # 🔌 WRAPPER. RN ve Flutter'ın konuştuğu kapı.
+└── android/AndroidMobileSDK.kt   # 🔌 WRAPPER. RN ve Flutter'ın konuştuğu kapı.
 
 ```
 
@@ -188,9 +188,9 @@ Anket kuralları, API istekleri, kuyruk yönetimi ve görünüm (Dialog/BottomSh
 React Native arayüzündeki değişimleri algılamak için "Sürekli Tarama" kullanır.
 
 ```text
-/surveysdk-react-native/android/src/.../reactnative/
-├── SurveySDKPackage.kt
-└── SurveySDKModule.kt            # 🕵️ TARAYICI. 'GlobalLayoutListener' ile View ağacını gezer.
+/mobilesdk-react-native/android/src/.../reactnative/
+├── MobileSDKPackage.kt
+└── MobileSDKModule.kt            # 🕵️ TARAYICI. 'GlobalLayoutListener' ile View ağacını gezer.
 
 ```
 
@@ -198,8 +198,8 @@ React Native arayüzündeki değişimleri algılamak için "Sürekli Tarama" kul
 Flutter kendi piksellerini çizdiği için, bu modül Dart widget'larından gelen sinyalleri dinler.
 
 ```text
-/surveysdk_flutter/android/src/.../surveysdk_flutter/
-├── SurveySdkFlutterPlugin.kt     # 📡 ALICI. Dart MethodChannel'dan gelen emirleri uygular.
+/mobilesdk_flutter/android/src/.../mobilesdk_flutter/
+├── MobileSdkFlutterPlugin.kt     # 📡 ALICI. Dart MethodChannel'dan gelen emirleri uygular.
 
 ```
 
@@ -229,7 +229,7 @@ Kullanıcı tanımlı bir butona tıkladığında:
 * **Flutter:** `SurveyTrigger` widget'ı `onPointerUp` olayını yakalar.
 
 
-3. **Sinyal:** Buton ID'si (örn: `"btn_checkout"`) `SurveySDK.kt`'ye iletilir.
+3. **Sinyal:** Buton ID'si (örn: `"btn_checkout"`) `MobileSDK.kt`'ye iletilir.
 4. **Core Mantık:**
 * Config Kontrolü: Bu ID için bir anket var mı?
 * Kural Kontrolü: Kullanıcı engelli mi? Soğuma süresi bitti mi?
@@ -247,8 +247,8 @@ Köprüye gerek yoktur. Doğrudan erişim sağlanır.
 
 ```kotlin
 // MainActivity.kt
-SurveySDK.initialize(this, "API_KEY")
-SurveySDK.getInstance().autoSetup(this)
+MobileSDK.initialize(this, "API_KEY")
+MobileSDK.getInstance().autoSetup(this)
 
 // XML Layout
 <Button android:tag="checkout_button" ... />
@@ -263,18 +263,18 @@ Native ID'leri bulmak için **Sihirli Tarayıcı** kullanır.
 
 ```javascript
 import { NativeModules } from 'react-native';
-const { SurveySDK } = NativeModules;
+const { MobileSDK } = NativeModules;
 
 // 1. Başlatma
 useEffect(() => {
-  SurveySDK.initialize("API_KEY");
-  SurveySDK.autoSetup();
+  MobileSDK.initialize("API_KEY");
+  MobileSDK.autoSetup();
 }, []);
 
 // 2. Navigasyon
 <NavigationContainer onStateChange={(state) => {
    const route = state.routes[state.index].name;
-   SurveySDK.triggerNavigationSurvey(route);
+   MobileSDK.triggerNavigationSurvey(route);
 }}>
 
 // 3. Arayüz
@@ -289,11 +289,11 @@ Native SDK'ya sinyal göndermek için **Akıllı Widget'lar** kullanır.
 **main.dart:**
 
 ```dart
-import 'package:surveysdk_flutter/surveysdk_flutter.dart';
+import 'package:mobilesdk_flutter/mobilesdk_flutter.dart';
 
 // 1. Başlatma
-await SurveySdkFlutter.initialize('API_KEY');
-await SurveySdkFlutter.autoSetup();
+await MobileSdkFlutter.initialize('API_KEY');
+await MobileSdkFlutter.autoSetup();
 
 // 2. Buton Tetikleyici
 SurveyTrigger(
@@ -319,7 +319,7 @@ MaterialApp(
 
 ## 4. Test ve Debugging
 
-Logcat üzerinden **`SurveySDK`** etiketiyle filtreleyin.
+Logcat üzerinden **`MobileSDK`** etiketiyle filtreleyin.
 
 * `👀 Continuous Scanning Started`: React Native tarayıcısı aktif.
 * `👆 Auto-Detected Click`: Tıklama yakalandı ve Core'a iletildi.

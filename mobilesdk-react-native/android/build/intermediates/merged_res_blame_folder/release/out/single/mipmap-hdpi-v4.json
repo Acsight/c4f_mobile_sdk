@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/mipmap-hdpi-v4/ic_launcher_round.webp",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/mipmap-hdpi-v4/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/mipmap-hdpi-v4/ic_launcher.webp",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/mipmap-hdpi-v4/ic_launcher.webp"
+    }
+]

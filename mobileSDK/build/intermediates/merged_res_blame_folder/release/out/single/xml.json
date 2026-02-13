@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/xml/data_extraction_rules.xml",
+        "source": "com.c4f.mobileSDK-main-49:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK-merged_res-48:/xml/backup_rules.xml",
+        "source": "com.c4f.mobileSDK-main-49:/xml/backup_rules.xml"
+    }
+]

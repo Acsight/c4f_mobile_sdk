@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-land/material_timepicker.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-material-1.10.0-20:/layout-land/material_timepicker.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-land/mtrl_picker_header_dialog.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-material-1.10.0-20:/layout-land/mtrl_picker_header_dialog.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-land/material_clock_period_toggle_land.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-material-1.10.0-20:/layout-land/material_clock_period_toggle_land.xml"
+    }
+]
