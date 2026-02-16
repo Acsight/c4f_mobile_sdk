@@ -34,13 +34,16 @@ class MobileSDKBridge {
    */
   // MobileSDK.js - MAKE SURE THIS MATCHES
   async initialize(apiKey, params) {
+    console.log("MobileSDK, initialize")
     if (!apiKey) throw new Error("API key is required");
-
+    
     if (params === undefined || params === null) {
       // Simple case - no second parameter at all
+      console.log("MobileSDK, initialize with no parameter")
       return await MobileSDK.initialize(apiKey); // Calls Kotlin's initialize(String, Promise)
     } else {
       // With params array - even if empty
+      console.log("MobileSDK, initialize with parameters")
       const paramsArray = Array.isArray(params) ? params : [params];
       return await MobileSDK.initializeWithParams(apiKey, paramsArray); // Different method!
     }

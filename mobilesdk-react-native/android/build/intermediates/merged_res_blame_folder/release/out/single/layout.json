@@ -9,7 +9,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_list_menu_item_checkbox.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_list_menu_item_checkbox.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_calendar_day_of_week.xml",
@@ -49,7 +49,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/fps_view.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/layout/fps_view.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/layout/fps_view.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_picker_header_toggle.xml",
@@ -61,7 +61,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_dialog_title_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_dialog_title_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_dialog_title_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/design_bottom_navigation_item.xml",
@@ -69,7 +69,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_action_bar_up_container.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_action_bar_up_container.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_action_bar_up_container.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_alert_select_dialog_singlechoice.xml",
@@ -77,7 +77,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/redbox_view.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/layout/redbox_view.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/layout/redbox_view.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_calendar_month_labeled.xml",
@@ -109,11 +109,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_alert_dialog_title_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_alert_dialog_title_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_alert_dialog_title_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_select_dialog_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_select_dialog_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_select_dialog_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/design_layout_snackbar_include.xml",
@@ -125,15 +125,15 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_list_menu_item_layout.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_list_menu_item_layout.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_list_menu_item_layout.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_expanded_menu_layout.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_expanded_menu_layout.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_expanded_menu_layout.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/redbox_item_title.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/layout/redbox_item_title.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/layout/redbox_item_title.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/design_bottom_sheet_dialog.xml",
@@ -141,7 +141,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_screen_toolbar.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_screen_toolbar.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_screen_toolbar.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/material_clock_display.xml",
@@ -165,7 +165,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/dev_loading_view.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/layout/dev_loading_view.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/layout/dev_loading_view.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_auto_complete_simple_item.xml",
@@ -177,11 +177,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_list_menu_item_radio.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_list_menu_item_radio.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_list_menu_item_radio.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_action_bar_title_item.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_action_bar_title_item.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_action_bar_title_item.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_picker_header_fullscreen.xml",
@@ -189,7 +189,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_popup_menu_item_layout.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_popup_menu_item_layout.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_popup_menu_item_layout.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_picker_header_selection_text.xml",
@@ -201,7 +201,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_tooltip.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_tooltip.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_tooltip.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/ime_base_split_test_activity.xml",
@@ -241,11 +241,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_screen_content_include.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_screen_content_include.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_screen_content_include.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_action_menu_layout.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_action_menu_layout.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_action_menu_layout.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/design_layout_tab_icon.xml",
@@ -253,7 +253,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_alert_dialog_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_alert_dialog_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_alert_dialog_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_picker_actions.xml",
@@ -261,7 +261,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/select_dialog_singlechoice_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/select_dialog_singlechoice_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/select_dialog_singlechoice_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/m3_auto_complete_simple_item.xml",
@@ -269,7 +269,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/select_dialog_item_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/select_dialog_item_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/select_dialog_item_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_alert_select_dialog_multichoice.xml",
@@ -297,15 +297,15 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/redbox_item_frame.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/layout/redbox_item_frame.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/layout/redbox_item_frame.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_list_menu_item_icon.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_list_menu_item_icon.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_list_menu_item_icon.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/support_simple_spinner_dropdown_item.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/support_simple_spinner_dropdown_item.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/design_navigation_item_subheader.xml",
@@ -313,7 +313,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_search_dropdown_item_icons_2line.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_search_dropdown_item_icons_2line.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_search_dropdown_item_icons_2line.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_layout_snackbar_include.xml",
@@ -321,7 +321,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_action_mode_close_item_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_action_mode_close_item_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_picker_header_dialog.xml",
@@ -337,7 +337,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/activity_survey_webview.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/layout/activity_survey_webview.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.1-37:/layout/activity_survey_webview.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/m3_alert_dialog_title.xml",
@@ -345,7 +345,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_cascading_menu_item_layout.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_cascading_menu_item_layout.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_cascading_menu_item_layout.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_search_view.xml",
@@ -353,11 +353,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/select_dialog_multichoice_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/select_dialog_multichoice_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/select_dialog_multichoice_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_activity_chooser_view.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_activity_chooser_view.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_activity_chooser_view.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/design_navigation_item_separator.xml",
@@ -365,7 +365,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_screen_simple_overlay_action_mode.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_screen_simple_overlay_action_mode.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_screen_simple_overlay_action_mode.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_calendar_day.xml",
@@ -389,11 +389,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_activity_chooser_view_list_item.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_activity_chooser_view_list_item.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_alert_dialog_button_bar_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_alert_dialog_button_bar_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_alert_dialog_button_bar_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_alert_dialog_title.xml",
@@ -401,11 +401,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_screen_simple.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_screen_simple.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_screen_simple.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_popup_menu_header_item_layout.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_popup_menu_header_item_layout.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_popup_menu_header_item_layout.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_calendar_month.xml",
@@ -417,7 +417,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_action_menu_item_layout.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_action_menu_item_layout.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_action_menu_item_layout.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/mtrl_navigation_rail_item.xml",
@@ -425,11 +425,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_action_mode_bar.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_action_mode_bar.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_action_mode_bar.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/abc_search_view.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout/abc_search_view.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/layout/abc_search_view.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout/m3_alert_dialog_actions.xml",

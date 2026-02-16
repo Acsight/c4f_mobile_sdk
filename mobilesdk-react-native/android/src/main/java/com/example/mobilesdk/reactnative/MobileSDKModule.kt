@@ -44,6 +44,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     // ✅ FOR SIMPLE INIT - NO PARAMS ARRAY
     @ReactMethod
     fun initialize(apiKey: String, promise: Promise) {
+        Log.d("MobileSDK_RN", "✅ initialize")
         try {
             Log.d("MobileSDK_RN", "✅ initialize(apiKey) called")
             
@@ -64,6 +65,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     // ✅ FOR INIT WITH PARAMETERS
     @ReactMethod
     fun initializeWithParams(apiKey: String, params: ReadableArray, promise: Promise) {
+        Log.d("MobileSDK_RN", "✅ initializeWithParams")
         try {
             Log.d("MobileSDK_RN", "✅ initializeWithParams called")
             

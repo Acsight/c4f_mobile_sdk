@@ -281,7 +281,9 @@ class SurveyApiService(private val apiKey: String) {
     private fun parseConfigFromJsonResponse(jsonString: String): Config {
         return try {
 
-            val json = JSONObject(jsonString)  // PRODUCTION
+            
+
+           val json = JSONObject(jsonString)  // PRODUCTION
             
             // Check for backend errors first
             val success = json.optBoolean("success", true)
@@ -311,7 +313,9 @@ class SurveyApiService(private val apiKey: String) {
             Log.d("SurveyApiService", "📦 Parsing config from ${if (json.has("data")) "data wrapper" else "direct JSON"}")
             
             val surveysArray = configJson.optJSONArray("surveys")
+            Log.d("SurveyApiService", "📦 Parsing config 496")
             val surveys = mutableListOf<SurveyConfig>()
+            Log.d("SurveyApiService", "📦 Parsing config 498")
 
             if (surveysArray != null && !surveysArray.toString().equals("null", ignoreCase = true)) {
                 Log.d("SurveyApiService", "📊 Found ${surveysArray.length()} surveys in response")
@@ -331,11 +335,18 @@ class SurveyApiService(private val apiKey: String) {
             }
             
             // Validate required fields
+            Log.e("SurveyApiService", "Parsing 518")
             val sdkVersion = configJson.optString("sdkVersion", SDKConstants.SDK_VERSION)
+            Log.e("SurveyApiService" ," sdkVersiono ")
+            Log.e("SurveyApiService", "sdkVersion ${sdkVersion}")
             val cacheDurationHours = configJson.optLong("cacheDurationHours", SDKConstants.CACHE_DURATION_HOURS)
-            
-            if (sdkVersion == "null" || cacheDurationHours <= 0) {
-                Log.w("SurveyApiService", "⚠️ Invalid config values, using defaults")
+            Log.e("SurveyApiService", "cacheDurationHo")
+            Log.e("SurveyApiService", "cacheDurationHours ${cacheDurationHours}")
+
+                  
+
+            if (sdkVersion == "null") {
+                Log.w("SurveyApiService", "⚠️ Invalid config values, using defaultus")
                 return DefaultConfig.EMPTY_CONFIG
             }
 

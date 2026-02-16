@@ -37,7 +37,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_tint_btn_checkable.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_tint_btn_checkable.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_tint_btn_checkable.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/material_cursor_color.xml",
@@ -109,7 +109,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_tint_default.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_tint_default.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_tint_default.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_navigation_rail_ripple_color_selector.xml",
@@ -145,7 +145,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_search_url_text.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_search_url_text.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_search_url_text.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_card_stroke_color.xml",
@@ -153,7 +153,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_tint_seek_thumb.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_tint_seek_thumb.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_tint_seek_thumb.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_timepicker_display_text_color.xml",
@@ -245,7 +245,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_tint_edittext.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_tint_edittext.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_tint_edittext.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_assist_chip_stroke_color.xml",
@@ -289,7 +289,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_background_cache_hint_selector_material_light.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_background_cache_hint_selector_material_light.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_background_cache_hint_selector_material_light.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/material_on_primary_emphasis_high_type.xml",
@@ -333,7 +333,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_background_cache_hint_selector_material_dark.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_background_cache_hint_selector_material_dark.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_background_cache_hint_selector_material_dark.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/mtrl_navigation_bar_ripple_color.xml",
@@ -421,7 +421,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_primary_text_disable_only_material_light.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_primary_text_disable_only_material_light.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_primary_text_disable_only_material_light.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/mtrl_btn_stroke_color_selector.xml",
@@ -433,7 +433,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_secondary_text_material_dark.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_secondary_text_material_dark.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_secondary_text_material_dark.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_switch_track_tint.xml",
@@ -473,11 +473,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_primary_text_material_light.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_primary_text_material_light.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_primary_text_material_light.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/switch_thumb_material_dark.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/switch_thumb_material_dark.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/switch_thumb_material_dark.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/material_on_primary_disabled.xml",
@@ -497,11 +497,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/switch_thumb_material_light.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/switch_thumb_material_light.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/switch_thumb_material_light.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_tint_spinner.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_tint_spinner.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_tint_spinner.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/mtrl_chip_surface_color.xml",
@@ -517,7 +517,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_secondary_text_material_light.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_secondary_text_material_light.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_secondary_text_material_light.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/mtrl_switch_track_tint.xml",
@@ -537,7 +537,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_primary_text_disable_only_material_dark.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_primary_text_disable_only_material_dark.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_primary_text_disable_only_material_dark.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_card_foreground_color.xml",
@@ -545,7 +545,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_hint_foreground_material_dark.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_hint_foreground_material_dark.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_hint_foreground_material_dark.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_navigation_item_ripple_color.xml",
@@ -569,7 +569,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_btn_colored_text_material.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_btn_colored_text_material.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_btn_colored_text_material.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_tabs_text_color_secondary.xml",
@@ -605,7 +605,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_hint_foreground_material_light.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_hint_foreground_material_light.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_hint_foreground_material_light.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/mtrl_calendar_selected_range.xml",
@@ -669,7 +669,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_tint_switch_track.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_tint_switch_track.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_tint_switch_track.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/m3_timepicker_button_background_color.xml",
@@ -709,7 +709,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/abc_primary_text_material_dark.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/color/abc_primary_text_material_dark.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/color/abc_primary_text_material_dark.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/color/material_personalized_color_primary_text_inverse.xml",
