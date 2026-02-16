@@ -746,7 +746,9 @@ class MobileSDK private constructor(
             val notTriggeredOnce = !(survey.triggerOnce &&
                     triggeredScreens[survey.surveyId]?.contains(screenName) == true)
 
-            isEnabled && matchesScreen && notTriggeredOnce
+            val canShowNow = canShowSurvey(survey)
+
+            isEnabled && matchesScreen && notTriggeredOnce && canShowNow
         }
 
         Log.d("MobileSDK", "🔍 Found ${matchingSurveys.size} navigation surveys for: $screenName")
@@ -1417,7 +1419,8 @@ class MobileSDK private constructor(
 
     private fun resetSurveyTracking() {
         Log.d("MobileSDK", "🔄 Resetting survey tracking...")
-        
+        Log.d("MobileSDK_DEBUG", "🔄 Resetting survey tracking. Current counts: $surveyShownCount")
+
         surveyShownCount.clear()
         lastSurveyTime.clear()
         triggeredScreens.clear()
@@ -1711,18 +1714,21 @@ class MobileSDK private constructor(
             return false
         }
 
-        if (Math.random() > survey.probability) {
-            Log.d(SDKConstants.LOG_TAG_SDK, "❌ Survey ${survey.surveyId} failed probability check")
-            return false
-        }
+        // if (Math.random() > survey.probability) {
+        //     Log.d(SDKConstants.LOG_TAG_SDK, "❌ Survey ${survey.surveyId} failed probability check")
+        //     return false
+        // }
 
         val shownCount = surveyShownCount[survey.surveyId] ?: 0
+        Log.d("MobileSDK_DEBUG", "🔢 Survey ${survey.surveyId} shownCount: $shownCount, maxShows: ${survey.maxShowsPerSession}")
         if (survey.maxShowsPerSession > 0 && shownCount >= survey.maxShowsPerSession) {
             Log.d(SDKConstants.LOG_TAG_SDK, "❌ Survey ${survey.surveyId} reached max shows: $shownCount/${survey.maxShowsPerSession}")
+            Log.d("MobileSDK_DEBUG", "❌ BLOCKED by max shows: $shownCount >= ${survey.maxShowsPerSession}")
             return false
         }
 
         val lastTime = lastSurveyTime[survey.surveyId] ?: 0
+        Log.d(SDKConstants.LOG_TAG_SDK, "✅ Survey Last Time ${lastTime}")
         if (survey.cooldownPeriod > 0) {
             val timeSinceLast = System.currentTimeMillis() - lastTime
             if (timeSinceLast < survey.cooldownPeriod) {
@@ -1735,13 +1741,22 @@ class MobileSDK private constructor(
         return true
     }
 
-    private fun recordSurveyShown(surveyId: String) {
+     private fun recordSurveyShown(surveyId: String) {
         val safeSurveyId = surveyId ?: return
         val currentCount = surveyShownCount[safeSurveyId] ?: 0
-        surveyShownCount[safeSurveyId] = currentCount + 1
+        val newCount = currentCount + 1
+        surveyShownCount[safeSurveyId] = newCount
         lastSurveyTime[safeSurveyId] = System.currentTimeMillis()
-        Log.d("MobileSDK", "📊 Survey shown: $safeSurveyId, count: ${surveyShownCount[safeSurveyId]}")
+        Log.d("MobileSDK_DEBUG", "📊 Survey shown: $safeSurveyId, count: $currentCount → $newCount")
     }
+
+    // private fun recordSurveyShown(surveyId: String) {
+    //     val safeSurveyId = surveyId ?: return
+    //     val currentCount = surveyShownCount[safeSurveyId] ?: 0
+    //     surveyShownCount[safeSurveyId] = currentCount + 1
+    //     lastSurveyTime[safeSurveyId] = System.currentTimeMillis()
+    //     Log.d("MobileSDK", "📊 Survey shown: $safeSurveyId, count: ${surveyShownCount[safeSurveyId]}")
+    // }
 
     private fun findMatchingSurveys(activity: Activity): List<SurveyConfig> {
         return config.surveys.filter { survey -> canShowSurvey(survey) }

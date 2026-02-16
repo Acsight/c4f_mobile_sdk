@@ -131,9 +131,6 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         }
     }
 
-    // ====================================================================
-    // AUTO SETUP
-    // ====================================================================
     @ReactMethod
     fun autoSetupReact(promise: Promise) {
         try {
@@ -150,8 +147,13 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
                     activity.window?.decorView?.postDelayed({
                         try {
                             val mobileSDK = MobileSDK.getInstance()
-                            setupReactNativeDetection(activity)
+                            
+                            // First, let core SDK do its normal autoSetup
                             mobileSDK.autoSetup(activity)
+                            
+                            // Then retry navigation detection with increasing delays
+                            retryNavigationDetection(mobileSDK, activity, 0)
+                            
                             isAutoSetupComplete = true
                             Log.d("MobileSDK_RN", "✅ React Native auto setup completed")
                             promise.resolve(true)
@@ -168,44 +170,123 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         }
     }
 
-    // ====================================================================
-    // REACT NATIVE DETECTION
-    // ====================================================================
-    private fun setupReactNativeDetection(activity: Activity) {
-        try {
-            Log.d("MobileSDK_RN", "🔍 Setting up React Native detection...")
-            setupReactNativeScrollDetection(activity)
-        } catch (e: Exception) {
-            Log.e("MobileSDK_RN", "❌ React Native detection setup failed", e)
+    private fun retryNavigationDetection(mobileSDK: MobileSDK, activity: Activity, attempt: Int) {
+        if (attempt > 3) return // Max 3 retries
+        
+        val delay = when (attempt) {
+            0 -> 1000L  // 1 second
+            1 -> 2000L  // 2 seconds
+            2 -> 3000L  // 3 seconds
+            else -> 5000L
         }
-    }
-
-    private fun setupReactNativeScrollDetection(activity: Activity) {
-        try {
-            Log.d("MobileSDK_RN", "📜 Setting up React Native scroll detection...")
-            val rootView = activity.window.decorView.findViewById<View>(android.R.id.content)
-            if (rootView != null) {
-                findAndSetupScrollViews(rootView, activity)
-                scrollDetectionEnabled = true
+        
+        activity.window?.decorView?.postDelayed({
+            try {
+                Log.d("MobileSDK_RN", "🔄 Retry $attempt: Re-triggering navigation detection")
+                mobileSDK.reSetupNavigationDetection(activity)
+            } catch (e: Exception) {
+                Log.e("MobileSDK_RN", "Navigation re-trigger failed on retry $attempt", e)
+                // Try again with next attempt
+                retryNavigationDetection(mobileSDK, activity, attempt + 1)
             }
-        } catch (e: Exception) {
-            Log.e("MobileSDK_RN", "❌ Scroll detection setup failed", e)
-        }
+        }, delay)
     }
 
-    private fun findAndSetupScrollViews(view: View, activity: Activity) {
+    // ====================================================================
+    // AUTO DETECTION - SDK WILL DETECT EVERYTHING AUTOMATICALLY
+    // ====================================================================
+    
+    private fun setupAutoDetection(activity: Activity) {
         try {
-            if (view::class.java.name.contains("ScrollView") ||
-                view::class.java.name.contains("FlatList") ||
-                view::class.java.name.contains("RecyclerView")) {
-                
-                Log.d("MobileSDK_RN", "✅ Found scrollable view: ${view.javaClass.simpleName}")
-                setupScrollListener(view, activity)
+            Log.d("MobileSDK_RN", "🔍 Setting up React Native auto-detection...")
+            
+            val rootView = activity.window.decorView
+            
+            // Monitor for view changes - helps detect navigation elements
+            rootView.viewTreeObserver.addOnGlobalLayoutListener {
+                scanForNavigationElements(rootView, activity)
             }
             
+            // Initial scan
+            scanForNavigationElements(rootView, activity)
+            
+            Log.d("MobileSDK_RN", "✅ React Native auto-detection ready")
+            Log.d("MobileSDK_RN", "🎯 SDK will automatically detect:")
+            Log.d("MobileSDK_RN", "   • Bottom navigation tabs")
+            Log.d("MobileSDK_RN", "   • In-page tabs (Mens, Womens, etc.)")
+            Log.d("MobileSDK_RN", "   • Button clicks")
+            Log.d("MobileSDK_RN", "   • Screen navigation")
+            
+        } catch (e: Exception) {
+            Log.e("MobileSDK_RN", "❌ Auto-detection setup failed", e)
+        }
+    }
+
+    private fun scanForNavigationElements(view: View, activity: Activity) {
+        try {
+            val viewClass = view.javaClass.name
+            
+            // Look for navigation/tab elements
+            if (viewClass.contains("Tab") || 
+                viewClass.contains("Navigation") ||
+                viewClass.contains("BottomNavigation") ||
+                viewClass.contains("TabLayout") ||
+                viewClass.contains("TabBar") ||
+                viewClass.contains("TabItem") ||
+                viewClass.contains("TabButton") ||
+                viewClass.contains("ViewPager") ||
+                viewClass.contains("Pager")) {
+                
+                Log.d("MobileSDK_RN", "✅ Found navigation element: ${viewClass.substringAfterLast('.')}")
+                
+                // Extract the name/label
+                val elementName = extractElementName(view)
+                
+                elementName?.let { name ->
+                    Log.d("MobileSDK_RN", "📍 Navigation element: $name")
+                    
+                    // FIX: Call triggerByNavigation instead of trackScreenView
+                    activity.runOnUiThread {
+                        MobileSDK.getInstance().triggerByNavigation(name, activity)
+                    }
+                }
+            }
+            
+            // Check for selected state (active tab)
+            if (view.isSelected) {
+                val selectedName = extractElementName(view)
+                selectedName?.let { name ->
+                    Log.d("MobileSDK_RN", "📑 Selected tab detected: $name")
+                    activity.runOnUiThread {
+                        // For tabs, use triggerByTabChange
+                        MobileSDK.getInstance().triggerByTabChange(name, activity)
+                    }
+                }
+            }
+            
+            // Also check for clicks on navigation items
+            if (view.isClickable) {
+                val originalOnClickListener = findOnClickListener(view)
+                
+                view.setOnClickListener { v ->
+                    // Call original listener
+                    originalOnClickListener?.onClick(v)
+                    
+                    // Then trigger navigation
+                    val clickName = extractElementName(v)
+                    clickName?.let { name ->
+                        Log.d("MobileSDK_RN", "👆 Navigation click: $name")
+                        activity.runOnUiThread {
+                            MobileSDK.getInstance().triggerByNavigation(name, activity)
+                        }
+                    }
+                }
+            }
+            
+            // Recursively scan children
             if (view is ViewGroup) {
                 for (i in 0 until view.childCount) {
-                    findAndSetupScrollViews(view.getChildAt(i), activity)
+                    scanForNavigationElements(view.getChildAt(i), activity)
                 }
             }
         } catch (e: Exception) {
@@ -213,43 +294,135 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         }
     }
 
-    private fun setupScrollListener(scrollView: View, activity: Activity) {
-        try {
-            var lastTriggerTime = 0L
-            val SCROLL_COOLDOWN_MS = 3000L
+    // Add this helper method to find original click listener
+    private fun findOnClickListener(view: View): View.OnClickListener? {
+        return try {
+            val getListenerInfo = View::class.java.getMethod("getListenerInfo")
+            getListenerInfo.isAccessible = true
+            val listenerInfo = getListenerInfo.invoke(view)
             
-            scrollView.viewTreeObserver.addOnScrollChangedListener {
-                val currentTime = System.currentTimeMillis()
-                if (currentTime - lastTriggerTime < SCROLL_COOLDOWN_MS) {
-                    return@addOnScrollChangedListener
-                }
+            val mOnClickListener = listenerInfo.javaClass.getDeclaredField("mOnClickListener")
+            mOnClickListener.isAccessible = true
+            mOnClickListener.get(listenerInfo) as? View.OnClickListener
+        } catch (e: Exception) {
+            null
+        }
+    }
 
-                val scrollY = scrollView.scrollY
-                val viewHeight = scrollView.height
+    private fun extractElementName(view: View): String? {
+        return when {
+            // TextView with text
+            view is android.widget.TextView && !view.text.isNullOrEmpty() -> 
+                view.text.toString().trim().lowercase()
+            
+            // Content description
+            !view.contentDescription.isNullOrEmpty() -> 
+                view.contentDescription.toString().trim().lowercase()
+            
+            // Tag
+            view.tag != null -> 
+                view.tag.toString().trim().lowercase()
+            
+            // Check child TextViews
+            view is ViewGroup -> {
+                for (i in 0 until view.childCount) {
+                    val child = view.getChildAt(i)
+                    if (child is android.widget.TextView && !child.text.isNullOrEmpty()) {
+                        return child.text.toString().trim().lowercase()
+                    }
+                }
+                null
+            }
+            
+            else -> null
+        }
+    }
+
+    
+
+    private fun helpDetectReactNavigation(activity: Activity) {
+        try {
+            Log.d("MobileSDK_RN", "📍 Helping core SDK detect React Navigation...")
+            
+            val rootView = activity.window.decorView
+            
+            // Look for common React Navigation containers
+            rootView.viewTreeObserver.addOnGlobalLayoutListener {
+                findAndNotifyNavigationElements(rootView, activity)
+            }
+            
+            // Also do an initial scan
+            findAndNotifyNavigationElements(rootView, activity)
+            
+        } catch (e: Exception) {
+            Log.e("MobileSDK_RN", "❌ Failed to help navigation detection", e)
+        }
+    }
+
+    private fun findAndNotifyNavigationElements(view: View, activity: Activity) {
+        try {
+            val viewClass = view.javaClass.name
+            
+            // Look for React Navigation specific elements
+            if (viewClass.contains("BottomNavigation") ||
+                viewClass.contains("TabLayout") ||
+                viewClass.contains("TabBar") ||
+                viewClass.contains("TabNavigator") ||
+                viewClass.contains("TabItem") ||
+                viewClass.contains("TabButton")) {
                 
-                val contentHeight = if (scrollView is ViewGroup && scrollView.childCount > 0) {
-                    scrollView.getChildAt(0).height
-                } else {
-                    scrollView.height
-                }
-
-                val scrollPercentage = if (contentHeight > viewHeight) {
-                    ((scrollY.toFloat() + viewHeight) / contentHeight) * 100
-                } else {
-                    0f
-                }
-
-                if (scrollPercentage >= 90) {
-                    Log.d("MobileSDK_RN", "🎯 Scroll threshold reached ($scrollPercentage%)")
-                    lastTriggerTime = currentTime
-                    // ✅ FIX: Call the SDK directly, not the ReactMethod
-                    MobileSDK.getInstance().triggerScrollManual(activity, 1000)
+                Log.d("MobileSDK_RN", "✅ Found navigation element: ${viewClass.substringAfterLast('.')}")
+                
+                // Get the text/content of this navigation element
+                val screenName = extractScreenName(view)
+                
+                screenName?.let { name ->
+                    Log.d("MobileSDK_RN", "📍 Navigation element content: $name")
+                    
+                    // Notify core SDK about this screen
+                    activity.runOnUiThread {
+                        MobileSDK.getInstance().trackScreenView(name, activity)
+                    }
                 }
             }
             
-            Log.d("MobileSDK_RN", "✅ Scroll listener setup successful")
+            // Recursively check children
+            if (view is ViewGroup) {
+                for (i in 0 until view.childCount) {
+                    findAndNotifyNavigationElements(view.getChildAt(i), activity)
+                }
+            }
         } catch (e: Exception) {
-            Log.e("MobileSDK_RN", "❌ Failed to setup scroll listener", e)
+            // Silent fail
+        }
+    }
+
+    private fun extractScreenName(view: View): String? {
+        return when {
+            // Try to get text from TextView
+            view is android.widget.TextView && !view.text.isNullOrEmpty() -> 
+                view.text.toString().trim().lowercase()
+            
+            // Try content description
+            !view.contentDescription.isNullOrEmpty() -> 
+                view.contentDescription.toString().trim().lowercase()
+            
+            // Try tag
+            view.tag != null -> 
+                view.tag.toString().trim().lowercase()
+            
+            // Check for child TextViews
+            view is ViewGroup -> {
+                for (i in 0 until view.childCount) {
+                    val child = view.getChildAt(i)
+                    if (child is android.widget.TextView && !child.text.isNullOrEmpty()) {
+                        return child.text.toString().trim().lowercase()
+                    }
+                }
+                null
+            }
+            
+            else -> null
         }
     }
 
@@ -273,12 +446,12 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     }
 
     @ReactMethod
-    fun triggerScrollSurvey(promise: Promise) {  // ← Parameter is Promise, NOT Activity
+    fun triggerScrollSurvey(promise: Promise) {
         try {
             Log.d("MobileSDK_RN", "📜 RN Bridge: Manual scroll trigger")
             val activity = getCurrentActivity()
             if (activity != null) {
-                MobileSDK.getInstance().triggerScrollManual(activity, 1000)  // ← Pass activity here
+                MobileSDK.getInstance().triggerScrollManual(activity, 1000)
                 promise.resolve(true)
             } else {
                 promise.reject("NO_ACTIVITY", "No activity available")

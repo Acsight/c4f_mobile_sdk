@@ -9,7 +9,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_slide_down.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/anim/catalyst_slide_down.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/anim/catalyst_slide_down.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/m3_motion_fade_enter.xml",
@@ -61,7 +61,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_push_up_out.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/anim/catalyst_push_up_out.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/anim/catalyst_push_up_out.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/nav_default_enter_anim.xml",
@@ -77,7 +77,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/slide_in_bottom.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/anim/slide_in_bottom.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/anim/slide_in_bottom.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_checkbox_to_checked_icon_null_animation.xml",
@@ -93,7 +93,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/fade_out.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/anim/fade_out.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/anim/fade_out.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_slide_in_bottom.xml",
@@ -101,7 +101,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_fade_in.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/anim/catalyst_fade_in.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/anim/catalyst_fade_in.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_slide_out_bottom.xml",
@@ -109,7 +109,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_slide_up.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/anim/catalyst_slide_up.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/anim/catalyst_slide_up.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_popup_enter.xml",
@@ -141,7 +141,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/slide_out_bottom.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/anim/slide_out_bottom.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/anim/slide_out_bottom.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_slide_in_top.xml",
@@ -153,7 +153,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/fade_in.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/anim/fade_in.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/anim/fade_in.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_shrink_fade_out_from_bottom.xml",
@@ -169,7 +169,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_fade_out.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/anim/catalyst_fade_out.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/anim/catalyst_fade_out.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_radio_to_off_mtrl_ring_outer_animation.xml",
@@ -185,6 +185,6 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_push_up_in.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/anim/catalyst_push_up_in.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/anim/catalyst_push_up_in.xml"
     }
 ]

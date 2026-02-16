@@ -121,7 +121,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/drawable-mdpi-v4/ic_launcher_foreground.png",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/drawable-mdpi-v4/ic_launcher_foreground.png"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/drawable-mdpi-v4/ic_launcher_foreground.png"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png",

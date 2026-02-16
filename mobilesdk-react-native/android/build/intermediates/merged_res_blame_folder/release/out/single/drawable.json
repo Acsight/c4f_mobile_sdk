@@ -313,7 +313,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/drawable/ic_launcher_background.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-packaged_res-49:/drawable/ic_launcher_background.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/drawable/ic_launcher_background.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/drawable/mtrl_switch_thumb_unchecked_checked.xml",
@@ -381,7 +381,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/drawable/abc_vector_test.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-resources-1.6.1-42:/drawable/abc_vector_test.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-resources-1.6.1-43:/drawable/abc_vector_test.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/drawable/mtrl_checkbox_button_icon_indeterminate_unchecked.xml",
@@ -461,7 +461,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/drawable/redbox_top_border_background.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-46:/drawable/redbox_top_border_background.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-react-android-0.72.0-release-47:/drawable/redbox_top_border_background.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/drawable/avd_show_password.xml",
