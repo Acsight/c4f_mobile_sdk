@@ -17,7 +17,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_tooltip_enter.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_tooltip_enter.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_tooltip_enter.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/m3_motion_fade_exit.xml",
@@ -25,7 +25,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_fade_out.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_fade_out.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_fade_out.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/mtrl_card_lowers_interpolator.xml",
@@ -33,7 +33,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_radio_to_on_mtrl_ring_outer_path_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_radio_to_on_mtrl_ring_outer_path_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_radio_to_on_mtrl_ring_outer_path_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/design_snackbar_in.xml",
@@ -41,7 +41,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_radio_to_on_mtrl_ring_outer_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_radio_to_on_mtrl_ring_outer_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_radio_to_on_mtrl_ring_outer_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/linear_indeterminate_line1_tail_interpolator.xml",
@@ -49,11 +49,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_popup_exit.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_popup_exit.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_popup_exit.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_checkbox_to_unchecked_box_inner_merged_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_checkbox_to_unchecked_box_inner_merged_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_checkbox_to_unchecked_box_inner_merged_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/design_snackbar_out.xml",
@@ -69,7 +69,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_checkbox_to_unchecked_check_path_merged_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_checkbox_to_unchecked_check_path_merged_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_checkbox_to_unchecked_check_path_merged_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/nav_default_pop_exit_anim.xml",
@@ -77,15 +77,15 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/slide_in_bottom.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/anim/slide_in_bottom.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.4-36:/anim/slide_in_bottom.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_checkbox_to_checked_icon_null_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_checkbox_to_checked_icon_null_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_checkbox_to_checked_icon_null_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_radio_to_off_mtrl_ring_outer_path_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_radio_to_off_mtrl_ring_outer_path_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_radio_to_off_mtrl_ring_outer_path_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/nav_default_exit_anim.xml",
@@ -93,11 +93,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/fade_out.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/anim/fade_out.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.4-36:/anim/fade_out.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_slide_in_bottom.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_slide_in_bottom.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_slide_in_bottom.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_fade_in.xml",
@@ -105,7 +105,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_slide_out_bottom.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_slide_out_bottom.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_slide_out_bottom.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_slide_up.xml",
@@ -113,15 +113,15 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_popup_enter.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_popup_enter.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_popup_enter.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_radio_to_off_mtrl_dot_group_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_radio_to_off_mtrl_dot_group_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_radio_to_off_mtrl_dot_group_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_tooltip_exit.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_tooltip_exit.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_tooltip_exit.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/linear_indeterminate_line1_head_interpolator.xml",
@@ -133,39 +133,39 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_checkbox_to_unchecked_icon_null_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_checkbox_to_unchecked_icon_null_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_checkbox_to_unchecked_icon_null_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_radio_to_on_mtrl_dot_group_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_radio_to_on_mtrl_dot_group_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_radio_to_on_mtrl_dot_group_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/slide_out_bottom.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/anim/slide_out_bottom.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.4-36:/anim/slide_out_bottom.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_slide_in_top.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_slide_in_top.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_slide_in_top.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_checkbox_to_checked_box_inner_merged_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_checkbox_to_checked_box_inner_merged_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_checkbox_to_checked_box_inner_merged_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/fade_in.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/anim/fade_in.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.4-36:/anim/fade_in.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_shrink_fade_out_from_bottom.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_shrink_fade_out_from_bottom.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_shrink_fade_out_from_bottom.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_checkbox_to_checked_box_outer_merged_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_checkbox_to_checked_box_outer_merged_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_checkbox_to_checked_box_outer_merged_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_grow_fade_in_from_bottom.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_grow_fade_in_from_bottom.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_grow_fade_in_from_bottom.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_fade_out.xml",
@@ -173,15 +173,15 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/btn_radio_to_off_mtrl_ring_outer_animation.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/btn_radio_to_off_mtrl_ring_outer_animation.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/btn_radio_to_off_mtrl_ring_outer_animation.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_slide_out_top.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_slide_out_top.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_slide_out_top.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/abc_fade_in.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/anim/abc_fade_in.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-39:/anim/abc_fade_in.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/anim/catalyst_push_up_in.xml",

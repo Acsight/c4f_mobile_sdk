@@ -931,8 +931,9 @@ class MobileSDK private constructor(
         currentContextName = normalizedName
         Log.d("MobileSDK", "   ✅ currentContextName updated to: $currentContextName")
 
-        if (previousScreen == normalizedName) return
-
+        //if (previousScreen == normalizedName) return
+        if (previousScreen == normalizedName && isInSurveyCooldown()) return
+        
         Log.d("MobileSDK", "🔄 Transition: $previousScreen -> $normalizedName")
         handleScreenTransition(previousScreen, normalizedName, activity)
         previousScreen = normalizedName
@@ -2737,15 +2738,18 @@ class MobileSDK private constructor(
 
     private fun handleScreenTransition(oldScreen: String?, newScreen: String, activity: Activity) {
         val candidates = mutableListOf<SurveyConfig>()
-
+        Log.d("MobileSDK", "   handleScreenTransition")
+        
         // A. Find EXIT Candidates (Leaving Old Screen)
         if (oldScreen != null) {
+            Log.d("MobileSDK", "   handleScreenTransition oldScreen")
             val exitMatches = config.surveys.filter { survey ->
                 survey.enableExitTrigger &&
                         survey.triggerScreens.any { oldScreen.contains(it, ignoreCase = true) } &&
                         canShowSurvey(survey)
             }
             candidates.addAll(exitMatches)
+            Log.d("MobileSDK", " exitMatches  Found ${exitMatches.size} Exit surveys for '$oldScreen'")
             if (exitMatches.isNotEmpty()) {
                 Log.d("MobileSDK", "   Found ${exitMatches.size} Exit surveys for '$oldScreen'")
             }
@@ -2758,9 +2762,11 @@ class MobileSDK private constructor(
                     canShowSurvey(survey)
         }
         candidates.addAll(navMatches)
+        Log.d("MobileSDK", " navMatches Found ${navMatches.size} Nav surveys for '$newScreen'")
         if (navMatches.isNotEmpty()) {
             Log.d("MobileSDK", "   Found ${navMatches.size} Nav surveys for '$newScreen'")
         }
+        Log.d("MobileSDK", "   handleScreenTransition candidates  ${candidates.isNotEmpty()}")
 
         // C. Priority Sorting
         if (candidates.isNotEmpty()) {

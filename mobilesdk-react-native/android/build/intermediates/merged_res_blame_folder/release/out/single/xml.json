@@ -5,10 +5,10 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/xml/data_extraction_rules.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/xml/data_extraction_rules.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.4-36:/xml/data_extraction_rules.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/xml/backup_rules.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.3-41:/xml/backup_rules.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-mobileSDK-v2.0.4-36:/xml/backup_rules.xml"
     }
 ]
