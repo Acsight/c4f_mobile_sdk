@@ -279,25 +279,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\dafat\\.gradle\\caches\\transforms-3\\c4de405f62cea5acfcbebbb1623419de\\transformed\\mobileSDK-v2.0.1\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,15",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,97,144,191,238,283,328,370,417,706",
-                        "endLines": "2,3,4,5,6,7,8,9,14,23",
-                        "endColumns": "41,46,46,46,44,44,41,46,12,12",
-                        "endOffsets": "92,139,186,233,278,323,365,412,701,1264"
-                    },
-                    "to": {
-                        "startLines": "648,957,958,959,970,971,974,2010,6697,6702",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "33134,56120,56167,56214,56958,57003,57169,132550,470145,470434",
-                        "endLines": "648,957,958,959,970,971,974,2010,6701,6710",
-                        "endColumns": "41,46,46,46,44,44,41,46,12,12",
-                        "endOffsets": "33171,56162,56209,56256,56998,57043,57206,132592,470429,470992"
-                    }
-                },
-                {
                     "source": "C:\\Users\\dafat\\.gradle\\caches\\transforms-3\\10331429be4396ab8f4f1d367d25a05a\\transformed\\transition-1.4.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
@@ -403,6 +384,25 @@
                         "startOffsets": "125820,138306,155422,155498",
                         "endColumns": "52,56,75,86",
                         "endOffsets": "125868,138358,155493,155580"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dafat\\Desktop\\SDK\\c4f_mobile_sdk\\mobileSDK\\build\\intermediates\\packaged_res\\release\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,97,144,191,238,283,328,370,417,706",
+                        "endLines": "2,3,4,5,6,7,8,9,14,23",
+                        "endColumns": "41,46,46,46,44,44,41,46,12,12",
+                        "endOffsets": "92,139,186,233,278,323,365,412,701,1264"
+                    },
+                    "to": {
+                        "startLines": "648,957,958,959,970,971,974,2010,6697,6702",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "33134,56120,56167,56214,56958,57003,57169,132550,470145,470434",
+                        "endLines": "648,957,958,959,970,971,974,2010,6701,6710",
+                        "endColumns": "41,46,46,46,44,44,41,46,12,12",
+                        "endOffsets": "33171,56162,56209,56256,56998,57043,57206,132592,470429,470992"
                     }
                 },
                 {
@@ -781,25 +781,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\dafat\\.gradle\\caches\\transforms-3\\c4de405f62cea5acfcbebbb1623419de\\transformed\\mobileSDK-v2.0.1\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,15",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,97,144,191,238,283,328,370,417,706",
-                        "endLines": "2,3,4,5,6,7,8,9,14,23",
-                        "endColumns": "41,46,46,46,44,44,41,46,12,12",
-                        "endOffsets": "92,139,186,233,278,323,365,412,701,1264"
-                    },
-                    "to": {
-                        "startLines": "648,957,958,959,970,971,974,2010,6697,6702",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "33134,56120,56167,56214,56958,57003,57169,132550,470145,470434",
-                        "endLines": "648,957,958,959,970,971,974,2010,6701,6710",
-                        "endColumns": "41,46,46,46,44,44,41,46,12,12",
-                        "endOffsets": "33171,56162,56209,56256,56998,57043,57206,132592,470429,470992"
-                    }
-                },
-                {
                     "source": "C:\\Users\\dafat\\.gradle\\caches\\transforms-3\\10331429be4396ab8f4f1d367d25a05a\\transformed\\transition-1.4.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
@@ -905,6 +886,25 @@
                         "startOffsets": "125820,138306,155422,155498",
                         "endColumns": "52,56,75,86",
                         "endOffsets": "125868,138358,155493,155580"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\dafat\\Desktop\\SDK\\c4f_mobile_sdk\\mobileSDK\\build\\intermediates\\packaged_res\\release\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,97,144,191,238,283,328,370,417,706",
+                        "endLines": "2,3,4,5,6,7,8,9,14,23",
+                        "endColumns": "41,46,46,46,44,44,41,46,12,12",
+                        "endOffsets": "92,139,186,233,278,323,365,412,701,1264"
+                    },
+                    "to": {
+                        "startLines": "648,957,958,959,970,971,974,2010,6697,6702",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "33134,56120,56167,56214,56958,57003,57169,132550,470145,470434",
+                        "endLines": "648,957,958,959,970,971,974,2010,6701,6710",
+                        "endColumns": "41,46,46,46,44,44,41,46,12,12",
+                        "endOffsets": "33171,56162,56209,56256,56998,57043,57206,132592,470429,470992"
                     }
                 },
                 {

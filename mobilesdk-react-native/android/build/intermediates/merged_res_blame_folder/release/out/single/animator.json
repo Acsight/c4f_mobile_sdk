@@ -1,11 +1,11 @@
 [
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/fragment_open_enter.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-48:/animator/fragment_open_enter.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-47:/animator/fragment_open_enter.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/fragment_close_enter.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-48:/animator/fragment_close_enter.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-47:/animator/fragment_close_enter.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/m3_btn_elevated_btn_state_list_anim.xml",
@@ -13,7 +13,7 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/fragment_open_exit.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-48:/animator/fragment_open_exit.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-47:/animator/fragment_open_exit.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/nav_default_pop_enter_anim.xml",
@@ -33,11 +33,11 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/fragment_fade_enter.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-48:/animator/fragment_fade_enter.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-47:/animator/fragment_fade_enter.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/fragment_close_exit.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-48:/animator/fragment_close_exit.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-47:/animator/fragment_close_exit.xml"
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/m3_elevated_chip_state_list_anim.xml",
@@ -141,6 +141,6 @@
     },
     {
         "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator/fragment_fade_exit.xml",
-        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-48:/animator/fragment_fade_exit.xml"
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-fragment-1.6.1-47:/animator/fragment_fade_exit.xml"
     }
 ]
