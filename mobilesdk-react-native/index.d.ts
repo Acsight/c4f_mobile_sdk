@@ -1,6 +1,20 @@
 declare module 'mobilesdk-react-native' {
   interface MobileSDKType {
     // Core Methods
+    /**
+     * Initialize the SDK with your API key
+     * @param apiKey - Your API key from dashboard
+     * @param params - Optional parameters (strings for storage lookup, objects for direct values)
+     * @example
+     * // Simple
+     * await MobileSDK.initialize('api-key');
+     * 
+     * // With storage params
+     * await MobileSDK.initialize('api-key', ['userID', 'email']);
+     * 
+     * // With direct values
+     * await MobileSDK.initialize('api-key', [{ userId: '123' }]);
+     */
     initialize(apiKey: string): Promise<boolean>;
     showSurvey(): Promise<boolean>;
     
@@ -24,6 +38,23 @@ declare module 'mobilesdk-react-native' {
     isUserExcluded(): Promise<boolean>;
     getDebugStatus(): Promise<string>;
     autoSetup(): Promise<boolean>;
+
+    // Add these missing methods
+    enableNavigationSafety(): Promise<boolean>;
+    autoSetupSafe(): Promise<boolean>;
+    triggerButtonSurvey(buttonId: string): Promise<boolean>;
+    triggerScrollSurvey(): Promise<boolean>;
+    triggerNavigationSurvey(screenName: string): Promise<boolean>;
+    getQueueStatus(): Promise<string>;
+    clearSurveyQueue(): Promise<boolean>;
+    isShowingSurvey(): Promise<boolean>;
+    isSDKEnabled(): Promise<boolean>;
+    fetchConfiguration(): Promise<boolean>;
+    getConfigForDebug(): Promise<string>;
+    cleanup(): Promise<boolean>;
+    getAllSurveysStatus(): Promise<Array<{surveyId: string, isExcluded: boolean}>>;
+    showFirstAvailableSurvey(): Promise<boolean>;
+
   }
 
   const MobileSDK: MobileSDKType;

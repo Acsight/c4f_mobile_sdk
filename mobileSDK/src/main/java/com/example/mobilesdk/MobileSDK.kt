@@ -395,7 +395,7 @@ class MobileSDK private constructor(
     private val surveyQueue = mutableListOf<Pair<Activity, SurveyConfig>>()
     private var isShowingSurvey = false
     private val queueLock = Any()
-
+    private var lastStringIdTriggerTime: Long = 0
     // Services
     private val apiService: SurveyApiService by lazy { SurveyApiService(apiKey) }
     private val configCacheManager: ConfigCacheManager by lazy { ConfigCacheManager(context) }
@@ -607,6 +607,14 @@ class MobileSDK private constructor(
     }
 
     fun triggerButtonByStringId(incomingButtonId: String, activity: Activity) {
+        // 🛡️ THE FIX: Ignore duplicate calls within 500ms
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastStringIdTriggerTime < 500) {
+            Log.d("MobileSDK", "⚡ Debouncing rapid button trigger for: $incomingButtonId")
+            return
+        }
+        lastStringIdTriggerTime = currentTime
+
         Log.d("MobileSDK", "RN: Bridge trigger request for ID: '$incomingButtonId'")
 
         // Scenario 1: Specific ID (Custom Defined ID)
@@ -1160,28 +1168,6 @@ class MobileSDK private constructor(
         }
     }
 
-    fun debugNavigationTriggers(activity: Activity) {
-        Log.d("MobileSDK", "=== DEBUG NAVIGATION TRIGGERS ===")
-
-        val navSurveys = config.surveys.filter { it.enableNavigationTrigger }
-        Log.d("MobileSDK", "Found ${navSurveys.size} navigation trigger surveys")
-
-        navSurveys.forEach { survey ->
-            Log.d("MobileSDK", "📱 Survey: ${survey.surveyId}")
-            Log.d("MobileSDK", "   • triggerScreens: ${survey.triggerScreens}")
-            Log.d("MobileSDK", "   • triggerType: ${survey.triggerType}")
-            Log.d("MobileSDK", "   • timeDelay: ${survey.timeDelay}ms")
-            Log.d("MobileSDK", "   • canShow: ${canShowSurvey(survey)}")
-
-            val testScreens = listOf("notifications", "profile", "settings", "home", "dashboard")
-            testScreens.forEach { screen ->
-                val matches = survey.triggerScreens.isEmpty() ||
-                        survey.triggerScreens.any { it.equals(screen, ignoreCase = true) }
-                Log.d("MobileSDK", "   • matches '$screen': $matches")
-            }
-        }
-    }
-
     fun debugExitTriggers(activity: Activity) {
         Log.d("MobileSDK", "=== DEBUG EXIT TRIGGERS ===")
 
@@ -1201,36 +1187,6 @@ class MobileSDK private constructor(
                 debugWhyCannotShow(survey)
             }
         }
-    }
-
-    fun testAllTriggers(activity: Activity) {
-        Log.d("MobileSDK", "🧪 TESTING ALL TRIGGERS")
-        triggerByNavigation("notifications", activity)
-        triggerByTabChange("mens", activity)
-
-        val scrollSurveys = config.surveys.filter { it.enableScrollTrigger }
-        if (scrollSurveys.isNotEmpty()) {
-            Log.d("MobileSDK", "Testing scroll trigger...")
-            val bestScrollSurvey = findHighestPrioritySurvey(scrollSurveys)
-            if (canShowSurvey(bestScrollSurvey)) {
-                showSingleSurvey(activity, bestScrollSurvey)
-            }
-        }
-
-        val buttonSurveys = config.surveys.filter { it.enableButtonTrigger }
-        if (buttonSurveys.isNotEmpty()) {
-            Log.d("MobileSDK", "Testing button trigger...")
-            val bestButtonSurvey = findHighestPrioritySurvey(buttonSurveys)
-            if (canShowSurvey(bestButtonSurvey)) {
-                showSingleSurvey(activity, bestButtonSurvey)
-            }
-        }
-
-        val exitSurveys = config.surveys.filter { it.enableExitTrigger }
-        Log.d("MobileSDK", "Exit surveys: ${exitSurveys.size}")
-
-        val appLaunchSurveys = config.surveys.filter { it.enableAppLaunchTrigger }
-        Log.d("MobileSDK", "App launch surveys: ${appLaunchSurveys.size}")
     }
 
     fun getBaseUrlForDebug(): String {
@@ -1308,18 +1264,6 @@ class MobileSDK private constructor(
 
     fun isReady(): Boolean {
         return initialized && configurationLoaded && config.surveys.isNotEmpty()
-    }
-
-    fun testNavigationTrigger(activity: Activity) {
-        Log.d("MobileSDK", "🧪 TESTING NAVIGATION TRIGGER")
-        
-        // Test with exact screen name from config
-        triggerByNavigation("notifications", activity)
-        
-        // Also test with variations
-        triggerByNavigation("Notifications", activity)
-        triggerByNavigation("notification", activity)
-        triggerByNavigation("NotificationsScreen", activity)
     }
 
     // ====================================================================

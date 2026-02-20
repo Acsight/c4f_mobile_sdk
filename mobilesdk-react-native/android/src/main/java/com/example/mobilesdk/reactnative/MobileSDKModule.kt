@@ -12,6 +12,8 @@ import com.c4f.mobileSDK.UniversalMobileSDK
 import kotlinx.coroutines.*
 import java.lang.ref.WeakReference
 import androidx.annotation.Nullable
+import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.Promise
 
 @ReactModule(name = "MobileSDK")
 class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
@@ -21,23 +23,31 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     private val coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
     private var registeredReactButtons = mutableSetOf<String>()
     private var scrollDetectionEnabled = false
+    private var hasNavigationListener = false
+
     
+    private var activityDelegate: MobileSDKActivityDelegate? = null
+
     
     init {
-    Log.d("MobileSDK_RN_CRITICAL", "=== MODULE LOADED ===")
-    Log.d("MobileSDK_RN_CRITICAL", "Class: ${this::class.java.name}")
+        Log.d("MobileSDK_RN_CRITICAL", "=== MODULE LOADED ===")
+        Log.d("MobileSDK_RN_CRITICAL", "Class: ${this::class.java.name}")
         
-    currentActivity = WeakReference(reactContext.currentActivity)
+        currentActivity = WeakReference(reactContext.currentActivity)
+        
+        // NEW: Initialize the activity delegate
+        activityDelegate = MobileSDKActivityDelegate(reactContext)
+        activityDelegate?.initialize()
 
-    // Print ALL methods this module exposes
-    val methods = this::class.java.methods
-    methods.filter { it.declaringClass == this::class.java }
-        .filter { it.name == "initialize" || it.name.contains("initialize") }
-        .forEach {
-            Log.d("MobileSDK_RN_CRITICAL", "📌 EXPOSED METHOD: ${it.name}")
-            Log.d("MobileSDK_RN_CRITICAL", "   Parameters: ${it.parameterTypes.joinToString { it.simpleName }}")
-        }
-}
+        // Print ALL methods this module exposes
+        val methods = this::class.java.methods
+        methods.filter { it.declaringClass == this::class.java }
+            .filter { it.name == "initialize" || it.name.contains("initialize") }
+            .forEach {
+                Log.d("MobileSDK_RN_CRITICAL", "📌 EXPOSED METHOD: ${it.name}")
+                Log.d("MobileSDK_RN_CRITICAL", "   Parameters: ${it.parameterTypes.joinToString { it.simpleName }}")
+            }
+    }
 
     override fun getName(): String = "MobileSDK"
 
@@ -48,7 +58,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         try {
             Log.d("MobileSDK_RN", "✅ initialize(apiKey) called")
             
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity == null) {
                 promise.reject("NO_ACTIVITY", "No activity available")
                 return
@@ -69,7 +79,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         try {
             Log.d("MobileSDK_RN", "✅ initializeWithParams called")
             
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity == null) {
                 promise.reject("NO_ACTIVITY", "No activity available")
                 return
@@ -116,7 +126,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     @ReactMethod
     fun autoSetup(promise: Promise) {
         try {
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity == null) {
                 promise.reject("NO_ACTIVITY", "No activity available")
                 return
@@ -131,16 +141,27 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         }
     }
 
+    // Helper method to get current activity (use delegate first)
+    fun getCurrentActivitySafely(): Activity? {
+        // First try the delegate (it tracks ReactActivity lifecycle)
+        activityDelegate?.getCurrentActivity()?.let { return it }
+        // Fallback to the default method
+        return super.getCurrentActivity()
+    }
+
     @ReactMethod
     fun autoSetupReact(promise: Promise) {
         try {
             Log.d("MobileSDK_RN", "🔄 RN: Starting autoSetup...")
             
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity == null) {
                 promise.reject("NO_ACTIVITY", "No activity available")
                 return
             }
+            
+            // The delegate already calls trackScreenView in onActivityResumed!
+            // So we don't need to add anything else
             
             activity.runOnUiThread {
                 try {
@@ -148,14 +169,17 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
                         try {
                             val mobileSDK = MobileSDK.getInstance()
                             
-                            // First, let core SDK do its normal autoSetup
+                            // Let core SDK do its normal autoSetup
                             mobileSDK.autoSetup(activity)
                             
-                            // Then retry navigation detection with increasing delays
+                            // Setup React Native specific auto-detection
+                            setupAutoDetection(activity) 
+                           
                             retryNavigationDetection(mobileSDK, activity, 0)
                             
                             isAutoSetupComplete = true
                             Log.d("MobileSDK_RN", "✅ React Native auto setup completed")
+                            
                             promise.resolve(true)
                         } catch (e: Exception) {
                             promise.reject("SETUP_ERROR", "Auto setup failed: ${e.message}")
@@ -195,21 +219,13 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     // ====================================================================
     // AUTO DETECTION - SDK WILL DETECT EVERYTHING AUTOMATICALLY
     // ====================================================================
-    
+
     private fun setupAutoDetection(activity: Activity) {
         try {
             Log.d("MobileSDK_RN", "🔍 Setting up React Native auto-detection...")
             
-            val rootView = activity.window.decorView
-            
-            // Monitor for view changes - helps detect navigation elements
-            rootView.viewTreeObserver.addOnGlobalLayoutListener {
-                scanForNavigationElements(rootView, activity)
-            }
-            
-            // Initial scan
-            scanForNavigationElements(rootView, activity)
-            
+            val rootView = activity.window.decorView          
+                       
             Log.d("MobileSDK_RN", "✅ React Native auto-detection ready")
             Log.d("MobileSDK_RN", "🎯 SDK will automatically detect:")
             Log.d("MobileSDK_RN", "   • Bottom navigation tabs")
@@ -222,75 +238,44 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         }
     }
 
-    private fun scanForNavigationElements(view: View, activity: Activity) {
+    // Add these methods to your MobileSDKModule.kt
+
+    @ReactMethod
+    fun trackScreenView(screenName: String, promise: Promise) {
         try {
-            val viewClass = view.javaClass.name
-            
-            // Look for navigation/tab elements
-            if (viewClass.contains("Tab") || 
-                viewClass.contains("Navigation") ||
-                viewClass.contains("BottomNavigation") ||
-                viewClass.contains("TabLayout") ||
-                viewClass.contains("TabBar") ||
-                viewClass.contains("TabItem") ||
-                viewClass.contains("TabButton") ||
-                viewClass.contains("ViewPager") ||
-                viewClass.contains("Pager")) {
-                
-                Log.d("MobileSDK_RN", "✅ Found navigation element: ${viewClass.substringAfterLast('.')}")
-                
-                // Extract the name/label
-                val elementName = extractElementName(view)
-                
-                elementName?.let { name ->
-                    Log.d("MobileSDK_RN", "📍 Navigation element: $name")
-                    
-                    // FIX: Call triggerByNavigation instead of trackScreenView
-                    activity.runOnUiThread {
-                        MobileSDK.getInstance().triggerByNavigation(name, activity)
-                    }
-                }
-            }
-            
-            // Check for selected state (active tab)
-            if (view.isSelected) {
-                val selectedName = extractElementName(view)
-                selectedName?.let { name ->
-                    Log.d("MobileSDK_RN", "📑 Selected tab detected: $name")
-                    activity.runOnUiThread {
-                        // For tabs, use triggerByTabChange
-                        MobileSDK.getInstance().triggerByTabChange(name, activity)
-                    }
-                }
-            }
-            
-            // Also check for clicks on navigation items
-            if (view.isClickable) {
-                val originalOnClickListener = findOnClickListener(view)
-                
-                view.setOnClickListener { v ->
-                    // Call original listener
-                    originalOnClickListener?.onClick(v)
-                    
-                    // Then trigger navigation
-                    val clickName = extractElementName(v)
-                    clickName?.let { name ->
-                        Log.d("MobileSDK_RN", "👆 Navigation click: $name")
-                        activity.runOnUiThread {
-                            MobileSDK.getInstance().triggerByNavigation(name, activity)
-                        }
-                    }
-                }
-            }
-            
-            // Recursively scan children
-            if (view is ViewGroup) {
-                for (i in 0 until view.childCount) {
-                    scanForNavigationElements(view.getChildAt(i), activity)
-                }
+            Log.d("MobileSDK_RN", "📱 Auto screen tracking: $screenName")
+            val activity = getCurrentActivitySafely()
+            if (activity != null) {
+                // Call the core SDK's trackScreenView with the screen name
+                MobileSDK.getInstance().trackScreenView(screenName, activity)
+                promise.resolve(true)
+            } else {
+                // If no activity, still resolve true (don't break the app)
+                Log.e("MobileSDK_RN", "No activity available for screen tracking")
+                promise.resolve(false)
             }
         } catch (e: Exception) {
-            // Silent fail
+            Log.e("MobileSDK_RN", "Error in trackScreenView: ${e.message}")
+            promise.reject("TRACKING_ERROR", e.message)
+        }
+    }
+
+    @ReactMethod
+    fun triggerExitSurvey(screenName: String, promise: Promise) {
+        try {
+            Log.d("MobileSDK_RN", "🚪 Trigger exit survey for: $screenName")
+            val activity = getCurrentActivitySafely()
+            if (activity != null) {
+                // This specifically triggers exit surveys
+                // You might need a specific method in your core SDK
+                // For now, we can use triggerByNavigation which handles both
+                MobileSDK.getInstance().triggerByNavigation(screenName, activity)
+                promise.resolve(true)
+            } else {
+                promise.reject("NO_ACTIVITY", "No activity available")
+            }
+        } catch (e: Exception) {
+            promise.reject("ERROR", e.message)
         }
     }
 
@@ -338,65 +323,6 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         }
     }
 
-    
-
-    private fun helpDetectReactNavigation(activity: Activity) {
-        try {
-            Log.d("MobileSDK_RN", "📍 Helping core SDK detect React Navigation...")
-            
-            val rootView = activity.window.decorView
-            
-            // Look for common React Navigation containers
-            rootView.viewTreeObserver.addOnGlobalLayoutListener {
-                findAndNotifyNavigationElements(rootView, activity)
-            }
-            
-            // Also do an initial scan
-            findAndNotifyNavigationElements(rootView, activity)
-            
-        } catch (e: Exception) {
-            Log.e("MobileSDK_RN", "❌ Failed to help navigation detection", e)
-        }
-    }
-
-    private fun findAndNotifyNavigationElements(view: View, activity: Activity) {
-        try {
-            val viewClass = view.javaClass.name
-            
-            // Look for React Navigation specific elements
-            if (viewClass.contains("BottomNavigation") ||
-                viewClass.contains("TabLayout") ||
-                viewClass.contains("TabBar") ||
-                viewClass.contains("TabNavigator") ||
-                viewClass.contains("TabItem") ||
-                viewClass.contains("TabButton")) {
-                
-                Log.d("MobileSDK_RN", "✅ Found navigation element: ${viewClass.substringAfterLast('.')}")
-                
-                // Get the text/content of this navigation element
-                val screenName = extractScreenName(view)
-                
-                screenName?.let { name ->
-                    Log.d("MobileSDK_RN", "📍 Navigation element content: $name")
-                    
-                    // Notify core SDK about this screen
-                    activity.runOnUiThread {
-                        MobileSDK.getInstance().trackScreenView(name, activity)
-                    }
-                }
-            }
-            
-            // Recursively check children
-            if (view is ViewGroup) {
-                for (i in 0 until view.childCount) {
-                    findAndNotifyNavigationElements(view.getChildAt(i), activity)
-                }
-            }
-        } catch (e: Exception) {
-            // Silent fail
-        }
-    }
-
     private fun extractScreenName(view: View): String? {
         return when {
             // Try to get text from TextView
@@ -426,6 +352,33 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
         }
     }
 
+    // Add this method to MobileSDKModule.kt temporarily
+    @ReactMethod
+    fun forceLogStatus(promise: Promise) {
+        try {
+            Log.d("MobileSDK_RN_DEBUG", "=== FORCED STATUS CHECK ===")
+            
+            val activity = getCurrentActivitySafely()
+            if (activity != null) {
+                Log.d("MobileSDK_RN_DEBUG", "Current activity: ${activity::class.java.simpleName}")
+            }
+            
+            val mobileSDK = MobileSDK.getInstance()
+            val isEnabled = mobileSDK.isSDKEnabled()
+            Log.d("MobileSDK_RN_DEBUG", "SDK Enabled: $isEnabled")
+            
+            val configLoaded = mobileSDK.isConfigurationLoaded()
+            Log.d("MobileSDK_RN_DEBUG", "Config loaded: $configLoaded")
+            
+            // Force a log from the core SDK
+            mobileSDK.debugConfigStatus()
+            
+            promise.resolve("Status logged")
+        } catch (e: Exception) {
+            promise.reject("DEBUG_ERROR", e.message)
+        }
+    }
+
     // ====================================================================
     // TRIGGER METHODS
     // ====================================================================
@@ -433,7 +386,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     fun triggerButtonSurvey(buttonId: String, promise: Promise) {
         try {
             Log.d("MobileSDK_RN", "🎯 RN Bridge: Manual trigger for button: $buttonId")
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity != null) {
                 MobileSDK.getInstance().triggerButtonByStringId(buttonId, activity)
                 promise.resolve(true)
@@ -449,7 +402,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     fun triggerScrollSurvey(promise: Promise) {
         try {
             Log.d("MobileSDK_RN", "📜 RN Bridge: Manual scroll trigger")
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity != null) {
                 MobileSDK.getInstance().triggerScrollManual(activity, 1000)
                 promise.resolve(true)
@@ -465,7 +418,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     fun triggerNavigationSurvey(screenName: String, promise: Promise) {
         try {
             Log.d("MobileSDK_RN", "📍 RN Bridge: Manual navigation trigger: $screenName")
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity != null) {
                 MobileSDK.getInstance().triggerByNavigation(screenName, activity)
                 promise.resolve(true)
@@ -474,6 +427,22 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
             }
         } catch (e: Exception) {
             promise.reject("TRIGGER_ERROR", "Failed to trigger navigation survey: ${e.message}")
+        }
+    }
+
+    @ReactMethod
+    fun triggerByTabChange(tabName: String, promise: Promise) {
+        try {
+            Log.d("MobileSDK_RN", "📍 RN Bridge: Manual tab trigger: $tabName")
+            val activity = getCurrentActivitySafely()
+            if (activity != null) {
+                MobileSDK.getInstance().triggerByTabChange(tabName, activity)
+                promise.resolve(true)
+            } else {
+                promise.reject("NO_ACTIVITY", "No activity available")
+            }
+        } catch (e: Exception) {
+            promise.reject("TRIGGER_ERROR", "Failed to trigger tab survey: ${e.message}")
         }
     }
 
@@ -490,7 +459,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     @ReactMethod
     fun autoSetupSafe(promise: Promise) {
         try {
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity != null) {
                 MobileSDK.getInstance().autoSetupSafe(activity)
                 promise.resolve(true)
@@ -508,7 +477,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     @ReactMethod
     fun showSurvey(promise: Promise) {
         try {
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity != null) {
                 MobileSDK.getInstance().showSurvey(activity)
                 promise.resolve(true)
@@ -523,7 +492,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     @ReactMethod
     fun showSurveyById(surveyId: String, promise: Promise) {
         try {
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity != null) {
                 MobileSDK.getInstance().showSurveyById(activity, surveyId)
                 promise.resolve(true)
@@ -541,7 +510,7 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     @ReactMethod
     fun setUserProperty(key: String, value: String, promise: Promise) {
         try {
-            val activity = getCurrentActivity()
+            val activity = getCurrentActivitySafely()
             if (activity != null) {
                 activity.getSharedPreferences("survey_sdk_data", Context.MODE_PRIVATE)
                     .edit().putString(key, value).apply()

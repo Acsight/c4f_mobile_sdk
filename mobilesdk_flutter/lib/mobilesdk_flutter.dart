@@ -68,6 +68,14 @@ class MobileSdkFlutter {
     return await initialize(apiKey);
   }
 
+  static Future<void> triggerByTabChange(String tabName) async {
+    try {
+      await _channel.invokeMethod('triggerTabChange', {'tabName': tabName});
+    } on PlatformException catch (e) {
+      debugPrint('Failed to trigger tab change: ${e.message}');
+    }
+  }
+
   /// Enables automatic lifecycle tracking (App Start/Exit).
   /// Note: For Button & Scroll detection, use SurveyTrigger and SurveyScrollView widgets.
   static Future<bool> autoSetup() async {

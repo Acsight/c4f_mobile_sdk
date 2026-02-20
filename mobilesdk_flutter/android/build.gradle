@@ -52,11 +52,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     
     // IF YOU MADE ANY CHANGES WTIH CORE MODULES, USE PROJECT IMPLEMENTATION FOR JITPACK BUILD AND COMMEND OUT LATER FOR RELEASE
-    implementation project(':mobileSDK')
+    //implementation project(':mobileSDK')
     // WHILE YOU DONT HAVE TAG NUMBER, BUT NOT PREFERRED
     //implementation 'com.github.acsight.c4f_mobile_sdk:mobileSDK:main-SNAPSHOT'
     // USE TAG NUMBER FOR NPM RELEASE
-    //implementation("com.github.acsight.c4f_mobile_sdk:mobileSDK:v1.2.13")
+    implementation("com.github.acsight.c4f_mobile_sdk:mobileSDK:v2.0.5")
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.fragment:fragment-ktx:1.6.1'
