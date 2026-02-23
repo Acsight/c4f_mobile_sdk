@@ -4,22 +4,17 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.util.Log
-import android.webkit.WebView
 import android.view.View
-import android.view.ViewGroup
 import com.c4f.mobileSDK.MobileSDK
 import com.facebook.react.ReactActivity
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.UiThreadUtil
-import com.facebook.react.bridge.Arguments
-import com.facebook.react.modules.core.DeviceEventManagerModule
 import kotlinx.coroutines.*
 
 class MobileSDKActivityDelegate(private val reactContext: ReactApplicationContext) {
     private var currentActivity: Activity? = null
     private var isAutoSetupComplete = false
     private val coroutineScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
-    private var isJsInjected = false
     private var lastGlobalTouchTime = 0L
 
     // Activity lifecycle callbacks to track React Native activities
@@ -30,9 +25,6 @@ class MobileSDKActivityDelegate(private val reactContext: ReactApplicationContex
             if (activity is ReactActivity) {
                 Log.d("MobileSDK_RN", "ReactActivity detected: ${activity.javaClass.simpleName}")
                 currentActivity = activity
-                
-                // Inject JavaScript to track navigation
-                injectNavigationTracker(activity)
                 
                 if (!isAutoSetupComplete) {
                     setupAutoDetection(activity)
@@ -82,106 +74,6 @@ class MobileSDKActivityDelegate(private val reactContext: ReactApplicationContex
             Log.d("MobileSDK_RN", "Activity delegate initialized")
         } catch (e: Exception) {
             Log.e("MobileSDK_RN", "Failed to initialize activity delegate: ${e.message}")
-        }
-    }
-    
-    private fun injectNavigationTracker(activity: ReactActivity) {
-        if (isJsInjected) return
-        
-        try {
-            // Find the WebView or React root view
-            val rootView = activity.window.decorView
-            
-            // Method 1: Try to find a WebView and inject JavaScript
-            findAndInjectIntoWebView(rootView)
-            
-            // Method 2: Use DeviceEventEmitter to communicate with JS
-            setupDeviceEventEmitter()
-            
-            isJsInjected = true
-            Log.d("MobileSDK_RN", "✅ Navigation tracker injection attempted")
-            
-        } catch (e: Exception) {
-            Log.e("MobileSDK_RN", "Failed to inject navigation tracker: ${e.message}")
-        }
-    }
-    
-    private fun findAndInjectIntoWebView(view: android.view.View) {
-        if (view is WebView) {
-            // Inject JavaScript that hooks into React Navigation
-            val jsCode = """
-                (function() {
-                    console.log('[MobileSDK] Injecting navigation tracker...');
-                    
-                    // Try to hook into React Navigation
-                    function setupTracking() {
-                        // Look for React Navigation in the global scope
-                        if (window.__REACT_NAVIGATION__) {
-                            const navigation = window.__REACT_NAVIGATION__;
-                            // Hook into navigation state changes
-                        }
-                        
-                        // Alternative: Hook into React's internals
-                        if (window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
-                            const reactInternals = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-                            // This is simplified - actual implementation depends on React version
-                        }
-                        
-                        // Poll for React Navigation every second (fallback)
-                        setTimeout(function checkNavigation() {
-                            try {
-                                // Try to find React Navigation in the app
-                                if (window.navigation && window.navigation.getCurrentRoute) {
-                                    const route = window.navigation.getCurrentRoute();
-                                    if (route && route.name) {
-                                        window.MobileSDKBridge.onScreenChanged(route.name);
-                                    }
-                                }
-                            } catch(e) {}
-                            
-                            setTimeout(checkNavigation, 1000);
-                        }, 1000);
-                    }
-                    
-                    setupTracking();
-                })();
-            """.trimIndent()
-            
-            view.evaluateJavascript(jsCode, null)
-            Log.d("MobileSDK_RN", "JavaScript injected into WebView")
-            return
-        }
-        
-        if (view is android.view.ViewGroup) {
-            for (i in 0 until view.childCount) {
-                findAndInjectIntoWebView(view.getChildAt(i))
-            }
-        }
-    }
-    
-    private fun setupDeviceEventEmitter() {
-        try {
-            // Create a JavaScript interface that will receive events from React Native
-            val jsInterface = object {
-                @android.webkit.JavascriptInterface
-                fun onScreenChanged(screenName: String) {
-                    Log.d("MobileSDK_RN", "📍 Screen changed via JS interface: $screenName")
-                    
-                    val activity = currentActivity
-                    if (activity != null) {
-                        android.util.Log.d("MobileSDK_RN", "Calling trackScreenView for: $screenName")
-                        MobileSDK.getInstance().trackScreenView(screenName, activity)
-                    }
-                }
-            }
-            
-            // We need to add this interface to the WebView
-            // This will be found by the findAndInjectIntoWebView method
-            
-            Log.d("MobileSDK_RN", "DeviceEventEmitter setup complete")
-            
-        } catch (e: Exception) {
-            Log.e("MobileSDK_RN", "Failed to setup DeviceEventEmitter: ${e.message}")
         }
     }
     

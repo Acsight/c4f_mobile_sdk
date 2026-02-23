@@ -160,33 +160,19 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
                 return
             }
             
-            // The delegate already calls trackScreenView in onActivityResumed!
-            // So we don't need to add anything else
-            
             activity.runOnUiThread {
                 try {
-                    activity.window?.decorView?.postDelayed({
-                        try {
-                            val mobileSDK = MobileSDK.getInstance()
-                            
-                            // Let core SDK do its normal autoSetup
-                            mobileSDK.autoSetup(activity)
-                            
-                            // Setup React Native specific auto-detection
-                            setupAutoDetection(activity) 
-                           
-                            retryNavigationDetection(mobileSDK, activity, 0)
-                            
-                            isAutoSetupComplete = true
-                            Log.d("MobileSDK_RN", "✅ React Native auto setup completed")
-                            
-                            promise.resolve(true)
-                        } catch (e: Exception) {
-                            promise.reject("SETUP_ERROR", "Auto setup failed: ${e.message}")
-                        }
-                    }, 500)
+                    val mobileSDK = MobileSDK.getInstance()
+                    
+                    // Let core SDK do its normal autoSetup (Hybrid Mode handles the rest)
+                    mobileSDK.autoSetup(activity)
+                    
+                    isAutoSetupComplete = true
+                    Log.d("MobileSDK_RN", "✅ React Native auto setup completed. Native UI scanning disabled.")
+                    
+                    promise.resolve(true)
                 } catch (e: Exception) {
-                    promise.reject("SETUP_ERROR", "UI thread setup failed: ${e.message}")
+                    promise.reject("SETUP_ERROR", "Auto setup failed: ${e.message}")
                 }
             }
         } catch (e: Exception) {
@@ -276,79 +262,6 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
             }
         } catch (e: Exception) {
             promise.reject("ERROR", e.message)
-        }
-    }
-
-    // Add this helper method to find original click listener
-    private fun findOnClickListener(view: View): View.OnClickListener? {
-        return try {
-            val getListenerInfo = View::class.java.getMethod("getListenerInfo")
-            getListenerInfo.isAccessible = true
-            val listenerInfo = getListenerInfo.invoke(view)
-            
-            val mOnClickListener = listenerInfo.javaClass.getDeclaredField("mOnClickListener")
-            mOnClickListener.isAccessible = true
-            mOnClickListener.get(listenerInfo) as? View.OnClickListener
-        } catch (e: Exception) {
-            null
-        }
-    }
-
-    private fun extractElementName(view: View): String? {
-        return when {
-            // TextView with text
-            view is android.widget.TextView && !view.text.isNullOrEmpty() -> 
-                view.text.toString().trim().lowercase()
-            
-            // Content description
-            !view.contentDescription.isNullOrEmpty() -> 
-                view.contentDescription.toString().trim().lowercase()
-            
-            // Tag
-            view.tag != null -> 
-                view.tag.toString().trim().lowercase()
-            
-            // Check child TextViews
-            view is ViewGroup -> {
-                for (i in 0 until view.childCount) {
-                    val child = view.getChildAt(i)
-                    if (child is android.widget.TextView && !child.text.isNullOrEmpty()) {
-                        return child.text.toString().trim().lowercase()
-                    }
-                }
-                null
-            }
-            
-            else -> null
-        }
-    }
-
-    private fun extractScreenName(view: View): String? {
-        return when {
-            // Try to get text from TextView
-            view is android.widget.TextView && !view.text.isNullOrEmpty() -> 
-                view.text.toString().trim().lowercase()
-            
-            // Try content description
-            !view.contentDescription.isNullOrEmpty() -> 
-                view.contentDescription.toString().trim().lowercase()
-            
-            // Try tag
-            view.tag != null -> 
-                view.tag.toString().trim().lowercase()
-            
-            // Check for child TextViews
-            view is ViewGroup -> {
-                for (i in 0 until view.childCount) {
-                    val child = view.getChildAt(i)
-                    if (child is android.widget.TextView && !child.text.isNullOrEmpty()) {
-                        return child.text.toString().trim().lowercase()
-                    }
-                }
-                null
-            }
-            
-            else -> null
         }
     }
 
