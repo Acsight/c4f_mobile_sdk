@@ -855,7 +855,10 @@ class MobileSDK private constructor(
         Log.d("MobileSDK", "📍 Context updated to: $normalizedName (Tab)")
 
         val currentTime = System.currentTimeMillis()
-        if (normalizedName == lastTriggeredTabName && (currentTime - lastTriggeredTabTime < 1000)) {
+        
+        // 🛡️ THE FIX: Removed the name check. Block EVERYTHING for 1 second.
+        // This safely absorbs the double-hit when the interceptor catches both "tab_womens" and "womens" at the exact same time.
+        if (currentTime - lastTriggeredTabTime < 1000) {
             Log.d("MobileSDK", "⚡ Debouncing rapid tab trigger: $normalizedName")
             return
         }
@@ -867,7 +870,8 @@ class MobileSDK private constructor(
         val matchingSurveys = config.surveys.filter { survey ->
             val isEnabled = survey.enableTabChangeTrigger
             
-            // 🛡️ THE FIX: Strict Equality Match (No more .contains bugs!)
+            // 🛡️ STRICT EQUALITY MATCH: No more .contains bugs. 
+            // "mens" will no longer falsely match "womens".
             val matchesTab = survey.triggerTabs.any { configTab ->
                 val normalizedConfig = configTab.lowercase().trim()
                 // Match exactly "womens" OR "tab_womens"
@@ -933,6 +937,10 @@ class MobileSDK private constructor(
 
     fun trackScreenView(activity: Activity) {
         ExclusionRuleEvaluator.trackScreenView(activity)
+        
+        // 🛡️ FIX 1: Stop Android's "MainActivity" from overwriting React Native's "home"
+        if (isHybridMode) return 
+        
         val rawName = activity.javaClass.simpleName
         trackScreenView(rawName, activity)
         Log.d("MobileSDK", "Screen view tracked for: $rawName")
@@ -940,22 +948,26 @@ class MobileSDK private constructor(
 
     fun trackScreenView(screenName: String, activity: Activity) {
         val normalizedName = screenName.lowercase().trim()
-        val isCooldown = isInSurveyCooldown()
-
-        Log.d("MobileSDK", "📥 trackScreenView called with: '$screenName'")
-
-        if (isCooldown) {
-            Log.w("MobileSDK", "   ⚠️ BLOCKED by Cooldown! State NOT updated.")
-            return
-        }
-
+        
+        // 🛡️ FIX 2: ALWAYS set the context immediately, even if config is still downloading!
+        // This ensures buttons/tabs know what screen they are on right from app launch.
         currentContextName = normalizedName
+        Log.d("MobileSDK", "📍 Context updated to: $currentContextName")
 
-        // 🛡️ THE FIX: Absolutely DO NOT process the same screen twice in a row!
-        if (previousScreen == normalizedName) {
-            Log.d("MobileSDK", "🛡️ Skipping duplicate trigger for screen: $normalizedName")
+        if (!configurationLoaded) {
+            Log.d("MobileSDK", "⏳ Config not loaded yet. Context saved, retrying transition evaluation in 1s.")
+            activity.window.decorView.postDelayed({
+                if (!activity.isFinishing && !activity.isDestroyed) {
+                    trackScreenView(screenName, activity)
+                }
+            }, 1000)
             return
         }
+
+        val isCooldown = isInSurveyCooldown()
+        if (isCooldown) return
+
+        if (previousScreen == normalizedName) return
         
         Log.d("MobileSDK", "🔄 Transition: $previousScreen -> $normalizedName")
         handleScreenTransition(previousScreen, normalizedName, activity)
