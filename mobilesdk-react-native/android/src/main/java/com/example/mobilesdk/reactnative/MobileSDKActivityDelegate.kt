@@ -98,7 +98,7 @@ class MobileSDKActivityDelegate(private val reactContext: ReactApplicationContex
         }
     }
 
-    private fun setupGlobalTouchInterceptor(activity: Activity) {
+    fun setupGlobalTouchInterceptor(activity: Activity) {
         val window = activity.window
         val originalCallback = window.callback
 

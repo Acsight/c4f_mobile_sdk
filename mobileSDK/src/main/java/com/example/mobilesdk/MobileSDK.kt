@@ -611,6 +611,18 @@ class MobileSDK private constructor(
     }
 
     fun triggerButtonByStringId(incomingButtonId: String, activity: Activity) {
+
+        // 🛡️ THE FIX: If config is downloading, wait 1 second and retry the tap!
+        if (!configurationLoaded) {
+            Log.d("MobileSDK", "⏳ Config loading... retrying button tap in 1s")
+            activity.window.decorView.postDelayed({
+                if (!activity.isFinishing && !activity.isDestroyed) {
+                    triggerButtonByStringId(incomingButtonId, activity)
+                }
+            }, 1000)
+            return
+        }
+        
         // 🛡️ THE FIX: Ignore duplicate calls within 500ms
         val currentTime = System.currentTimeMillis()
         if (currentTime - lastStringIdTriggerTime < 500) {

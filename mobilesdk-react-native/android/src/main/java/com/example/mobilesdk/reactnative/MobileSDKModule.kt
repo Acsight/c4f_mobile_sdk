@@ -166,6 +166,8 @@ class MobileSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
                     
                     // Let core SDK do its normal autoSetup (Hybrid Mode handles the rest)
                     mobileSDK.autoSetup(activity)
+
+                    activityDelegate?.setupGlobalTouchInterceptor(activity)
                     
                     isAutoSetupComplete = true
                     Log.d("MobileSDK_RN", "✅ React Native auto setup completed. Native UI scanning disabled.")
