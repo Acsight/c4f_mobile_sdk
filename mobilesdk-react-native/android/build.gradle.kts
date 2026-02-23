@@ -55,9 +55,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
     // IF YOU MADE ANY CHANGES WTIH CORE MODULES, USE PROJECT IMPLEMENTATION FOR JITPACK BUILD AND COMMEND OUT LATER FOR NPM RELEASE
 
-    implementation(project(":mobileSDK"))
+    //implementation(project(":mobileSDK"))
     // USE TAG NUMBER FOR NPM RELEASE
-    //implementation("com.github.acsight.c4f_mobile_sdk:mobileSDK:v2.0.10")
+    implementation("com.github.acsight.c4f_mobile_sdk:mobileSDK:v2.0.11")
     // WHILE YOU DONT HAVE TAG NUMBER
     // implementation("com.github.acsight.c4f_mobile_sdk:mobileSDK:main-SNAPSHOT")
     implementation("androidx.appcompat:appcompat:1.6.1")

@@ -56,7 +56,7 @@ dependencies {
     // WHILE YOU DONT HAVE TAG NUMBER, BUT NOT PREFERRED
     //implementation 'com.github.acsight.c4f_mobile_sdk:mobileSDK:main-SNAPSHOT'
     // USE TAG NUMBER FOR NPM RELEASE
-    implementation("com.github.acsight.c4f_mobile_sdk:mobileSDK:v2.0.5")
+    implementation("com.github.acsight.c4f_mobile_sdk:mobileSDK:v2.0.11")
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.fragment:fragment-ktx:1.6.1'
