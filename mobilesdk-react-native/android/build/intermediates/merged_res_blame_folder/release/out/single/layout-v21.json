@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-v21/notification_template_icon_group.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-core-1.12.0-36:/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-v21/notification_action_tombstone.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-core-1.12.0-36:/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-v21/notification_template_custom_big.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-core-1.12.0-36:/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-v21/notification_action.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-core-1.12.0-36:/layout-v21/notification_action.xml"
+    }
+]

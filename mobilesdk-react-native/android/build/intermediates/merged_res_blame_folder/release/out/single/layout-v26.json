@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-v26/abc_screen_toolbar.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-appcompat-1.6.1-38:/layout-v26/abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-v26/mtrl_calendar_month.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-material-1.10.0-20:/layout-v26/mtrl_calendar_month.xml"
+    }
+]

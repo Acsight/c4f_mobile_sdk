@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-material-1.10.0-20:/layout-sw600dp-v13/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/layout-sw600dp-v13/mtrl_layout_snackbar.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-material-1.10.0-20:/layout-sw600dp-v13/mtrl_layout_snackbar.xml"
+    }
+]

@@ -390,7 +390,7 @@ class MobileSDK private constructor(
     private var navigationSafetyEnabled = false
     private var appLaunchTriggerSetup = false
     private val pendingNavigationTriggers = mutableMapOf<String, Pair<Long, Activity>>()
-
+    private var isHybridMode = false
     // Survey queue system
     private val surveyQueue = mutableListOf<Pair<Activity, SurveyConfig>>()
     private var isShowingSurvey = false
@@ -526,42 +526,46 @@ class MobileSDK private constructor(
 
         activity.window.decorView.post {
             if (activity.isFinishing || activity.isDestroyed) {
-                Log.w("MobileSDK", "⚠️ Activity no longer valid, skipping trigger setup")
                 return@post
             }
             
             Handler(Looper.getMainLooper()).postDelayed({
-                // Setup triggers in sequence
                 
-                // **FIRST: Setup navigation detection (before other triggers)**
-                if (config.surveys.any { it.enableNavigationTrigger || it.enableTabChangeTrigger }) {
-                    Log.d("MobileSDK", "📍 Setting up navigation/tab detection")
-                    autoDetectNavigation(activity)
-                    autoDetectNavigationComponent(activity)
+                // 🛡️ HYBRID MODE CHECK: Only run these in pure Android apps!
+                if (!isHybridMode) {
+                    if (config.surveys.any { it.enableNavigationTrigger || it.enableTabChangeTrigger }) {
+                        autoDetectNavigation(activity)
+                        autoDetectNavigationComponent(activity)
+                    }
+                    
+                    startGlobalViewScanning(activity)
+                    
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        setupAutoScreenTracking(activity)
+                    }, 400)
+                    
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        setupSmartButtonDetection(activity)
+                    }, 600)
+                    
+                    if (config.surveys.any { it.enableTabChangeTrigger }) {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            setupTabChangeTrigger(activity)
+                        }, 800)
+                    }
+                } else {
+                    Log.d("MobileSDK", "⚛️ Hybrid Mode: Skipping Native UI Scanners")
                 }
-                
-                // Then other triggers
-                startGlobalViewScanning(activity)
-                
+
+                // ✅ ALWAYS RUN THESE (Both pure Android & React Native need these)
                 Handler(Looper.getMainLooper()).postDelayed({
                     setupScrollTrigger(activity)
                     setupScrollViewObserver(activity)
                 }, 200)
-                
+
                 Handler(Looper.getMainLooper()).postDelayed({
                     setupAppLaunchTrigger(activity)
-                    setupAutoScreenTracking(activity)
                 }, 400)
-                
-                Handler(Looper.getMainLooper()).postDelayed({
-                    setupSmartButtonDetection(activity)
-                }, 600)
-                
-                if (config.surveys.any { it.enableTabChangeTrigger }) {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        setupTabChangeTrigger(activity)
-                    }, 800)
-                }
                 
                 if (config.surveys.any { it.enableExitTrigger }) {
                     Handler(Looper.getMainLooper()).postDelayed({
@@ -676,6 +680,13 @@ class MobileSDK private constructor(
     // ====================================================================
     // PUBLIC API - TRIGGER MANAGEMENT
     // ====================================================================
+
+    fun enableHybridMode(): MobileSDK {
+        isHybridMode = true
+        Log.d("MobileSDK", "⚛️ Hybrid Mode ENABLED - Disabling native UI scanners")
+        return this
+    }
+
     fun setupButtonTrigger(button: View, activity: Activity, surveyId: String? = null) {
         val surveysToUse = if (surveyId != null) {
             config.surveys.filter { it.surveyId == surveyId && it.enableButtonTrigger }
@@ -928,8 +939,6 @@ class MobileSDK private constructor(
         val isCooldown = isInSurveyCooldown()
 
         Log.d("MobileSDK", "📥 trackScreenView called with: '$screenName'")
-        Log.d("MobileSDK", "   ├── Normalized: '$normalizedName'")
-        Log.d("MobileSDK", "   ├── Cooldown Active? $isCooldown")
 
         if (isCooldown) {
             Log.w("MobileSDK", "   ⚠️ BLOCKED by Cooldown! State NOT updated.")
@@ -937,10 +946,12 @@ class MobileSDK private constructor(
         }
 
         currentContextName = normalizedName
-        Log.d("MobileSDK", "   ✅ currentContextName updated to: $currentContextName")
 
-        //if (previousScreen == normalizedName) return
-        if (previousScreen == normalizedName && isInSurveyCooldown()) return
+        // 🛡️ THE FIX: Absolutely DO NOT process the same screen twice in a row!
+        if (previousScreen == normalizedName) {
+            Log.d("MobileSDK", "🛡️ Skipping duplicate trigger for screen: $normalizedName")
+            return
+        }
         
         Log.d("MobileSDK", "🔄 Transition: $previousScreen -> $normalizedName")
         handleScreenTransition(previousScreen, normalizedName, activity)

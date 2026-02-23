@@ -1,6 +1,6 @@
 {
-  "name": "mobilesdk-react-native",
-  "version": "1.2.13",
+  "name": "@cloud4feed/mobilesdk-react-native",
+  "version": "1.2.15",
   "description": "React Native Survey SDK with automatic triggers and user targeting",
   "main": "index.js",
   "types": "index.d.ts",
@@ -33,5 +33,12 @@
     "ios",
     "expo-plugin.js"
   ],
-  "expo-plugin": "./expo-plugin.js"
+  "expo-plugin": "./expo-plugin.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "bugs": {
+    "url": "https://github.com/acsight/c4f_mobile_sdk/issues"
+  },
+  "homepage": "https://github.com/acsight/c4f_mobile_sdk#readme"
 }

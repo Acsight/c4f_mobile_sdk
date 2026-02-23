@@ -36,6 +36,9 @@ class UniversalMobileSDK private constructor() {
         if (!isInitialized) {
             Log.d("UniversalMobileSDK", "Initializing with API key")
             
+            // 🛡️ Enable Hybrid Mode here!
+            MobileSDK.getInstance().enableHybridMode()
+
             // Pass through to the real SDK
             MobileSDK.initialize(application, apiKey, *params)
             

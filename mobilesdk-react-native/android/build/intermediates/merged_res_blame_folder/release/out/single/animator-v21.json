@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator-v21/m3_appbar_state_list_animator.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-material-1.10.0-20:/animator-v21/m3_appbar_state_list_animator.xml"
+    },
+    {
+        "merged": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-merged_res-53:/animator-v21/design_appbar_state_list_animator.xml",
+        "source": "com.c4f.mobileSDK.reactnative.mobilesdk-react-native-material-1.10.0-20:/animator-v21/design_appbar_state_list_animator.xml"
+    }
+]
