@@ -855,23 +855,27 @@ class MobileSDK private constructor(
         Log.d("MobileSDK", "📍 Context updated to: $normalizedName (Tab)")
 
         val currentTime = System.currentTimeMillis()
-        if (tabName == lastTriggeredTabName && (currentTime - lastTriggeredTabTime < 1000)) {
-            Log.d("MobileSDK", "⚡ Debouncing rapid tab trigger: $tabName")
+        if (normalizedName == lastTriggeredTabName && (currentTime - lastTriggeredTabTime < 1000)) {
+            Log.d("MobileSDK", "⚡ Debouncing rapid tab trigger: $normalizedName")
             return
         }
 
-        lastTriggeredTabName = tabName
+        lastTriggeredTabName = normalizedName
         lastTriggeredTabTime = currentTime
-        Log.d("MobileSDK", "📍 triggerByTabChange processing: $tabName")
+        Log.d("MobileSDK", "📍 triggerByTabChange processing: $normalizedName")
 
         val matchingSurveys = config.surveys.filter { survey ->
             val isEnabled = survey.enableTabChangeTrigger
+            
+            // 🛡️ THE FIX: Strict Equality Match (No more .contains bugs!)
             val matchesTab = survey.triggerTabs.any { configTab ->
-                tabName.contains(configTab, ignoreCase = true) ||
-                        configTab.contains(tabName, ignoreCase = true)
+                val normalizedConfig = configTab.lowercase().trim()
+                // Match exactly "womens" OR "tab_womens"
+                normalizedName == normalizedConfig || normalizedName == "tab_$normalizedConfig"
             }
+            
             val alreadyTriggered = survey.triggerOnce &&
-                    triggeredTabs[survey.surveyId]?.contains(tabName) == true
+                    triggeredTabs[survey.surveyId]?.contains(normalizedName) == true
             val isValid = canShowSurvey(survey)
 
             isEnabled && matchesTab && !alreadyTriggered && isValid
@@ -880,10 +884,10 @@ class MobileSDK private constructor(
         if (matchingSurveys.isNotEmpty()) {
             val bestSurvey = findHighestPrioritySurvey(matchingSurveys)
             Log.d("MobileSDK", "🎯 TAB MATCHED! Showing survey: ${bestSurvey.surveyId}")
-            triggeredTabs[bestSurvey.surveyId]?.add(tabName)
+            triggeredTabs[bestSurvey.surveyId]?.add(normalizedName)
             showSingleSurvey(activity, bestSurvey)
         } else {
-            Log.d("MobileSDK", "❌ No matching or valid Tab Survey found for '$tabName'")
+            Log.d("MobileSDK", "❌ No matching or valid Tab Survey found for '$normalizedName'")
         }
     }
 

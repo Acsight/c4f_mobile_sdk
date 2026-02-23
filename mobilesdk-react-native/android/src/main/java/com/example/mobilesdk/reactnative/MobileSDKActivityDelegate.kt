@@ -125,8 +125,12 @@ class MobileSDKActivityDelegate(private val reactContext: ReactApplicationContex
                             // Pass the detected IDs to your core SDK
                             android.os.Handler(android.os.Looper.getMainLooper()).post {
                                 touchedIdentifiers.forEach { identifier ->
-                                    // This will trigger Survey 176 if the identifier matches!
+                                  
+                                    // 1. Check if this word matches any Button triggers
                                     MobileSDK.getInstance().triggerButtonByStringId(identifier, activity)
+                                    
+                                    // 2. 🆕 Check if this word matches any Tab triggers!
+                                    MobileSDK.getInstance().triggerByTabChange(identifier, activity)
                                 }
                             }
                         }
