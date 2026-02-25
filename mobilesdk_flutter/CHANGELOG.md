@@ -13,3 +13,11 @@
 ## 1.2.11
 
 - Fixed all trigger method for auto detection
+
+## 1.2.12
+
+- Fixed scroll trigger method for auto detection
+
+## 1.2.13
+
+- changed package name to cloud4feed_mobilesdk_flutter

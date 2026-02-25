@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.c4f.mobilesdk_flutter">
+    package="com.c4f.cloud4feed_mobilesdk_flutter">
     
     <uses-permission android:name="android.permission.INTERNET" />
     

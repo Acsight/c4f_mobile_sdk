@@ -1,4 +1,4 @@
-package com.c4f.mobilesdk_flutter
+package com.c4f.cloud4feed_mobilesdk_flutter
 
 import android.os.Bundle
 import android.util.Log

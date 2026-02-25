@@ -1,4 +1,4 @@
-# mobilesdk_flutter
+# cloud4feed_mobilesdk_flutter
 
 A new Flutter plugin project.
 

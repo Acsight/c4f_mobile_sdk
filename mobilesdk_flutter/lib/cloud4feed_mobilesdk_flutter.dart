@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 // =============================================================================
 
 class MobileSdkFlutter {
-  static const MethodChannel _channel = MethodChannel('mobilesdk_flutter');
+  static const MethodChannel _channel = MethodChannel('cloud4feed_mobilesdk_flutter');
 
   // ---------------------------------------------------------------------------
   // 🚀 INITIALIZATION & SETUP
@@ -138,6 +138,7 @@ class MobileSdkFlutter {
       debugPrint('Failed to trigger scroll: ${e.message}');
     }
   }
+  
 
   // ---------------------------------------------------------------------------
   // 🛠️ DISPLAY & UTILS
@@ -353,16 +354,55 @@ class SurveyNavigationObserver extends NavigatorObserver {
   }
 }
 
-/// 3. SCROLL TRIGGER WIDGET
+// =============================================================================
+// 🧱 WIDGETS FOR AUTO-DETECTION
+// =============================================================================
+
+/// 3. 🛡️ AUTOMATIC SDK WRAPPER (Global Scroll Detection)
+/// Wraps the entire application to automatically detect scrolls 
+/// without requiring the developer to write manual trigger code.
+class MobileSdkWrapper extends StatefulWidget {
+  final Widget child;
+  const MobileSdkWrapper({super.key, required this.child});
+
+  @override
+  State<MobileSdkWrapper> createState() => _MobileSdkWrapperState();
+}
+
+class _MobileSdkWrapperState extends State<MobileSdkWrapper> {
+  int _lastSentScrollY = 0; 
+
+  @override
+  Widget build(BuildContext context) {
+    return NotificationListener<ScrollNotification>(
+      onNotification: (ScrollNotification notification) {
+        if (notification is ScrollUpdateNotification && notification.metrics.axis == Axis.vertical) {
+          
+          int currentScrollY = notification.metrics.pixels.toInt();
+          
+          // Only talk to Kotlin if the scroll depth changed by at least 50 pixels.
+          if ((currentScrollY - _lastSentScrollY).abs() >= 50) {
+            _lastSentScrollY = currentScrollY;
+            MobileSdkFlutter.triggerScroll(scrollY: currentScrollY);
+          }
+        }
+        return false; // Let the scroll continue normally
+      },
+      child: widget.child,
+    );
+  }
+}
+
+/// 3. LOCAL SCROLL TRIGGER WIDGET
 /// Wraps content in a SingleChildScrollView that automatically reports scroll events.
 class SurveyScrollView extends StatefulWidget {
   final Widget child;
-  final int threshold; // Pixel threshold to trigger survey (default 100)
+  final int threshold; // Match this to your Cloud4Feed JSON!
 
   const SurveyScrollView({
     super.key,
     required this.child,
-    this.threshold = 100,
+    this.threshold = 300, 
   });
 
   @override
@@ -371,7 +411,9 @@ class SurveyScrollView extends StatefulWidget {
 
 class _SurveyScrollViewState extends State<SurveyScrollView> {
   final ScrollController _controller = ScrollController();
-  bool _triggered = false; 
+  
+  // 🔥 The Lock: Prevents the infinite trigger loop
+  bool _hasTriggered = false; 
 
   @override
   void initState() {
@@ -380,15 +422,19 @@ class _SurveyScrollViewState extends State<SurveyScrollView> {
   }
 
   void _onScroll() {
-    if (!_triggered && _controller.offset >= widget.threshold) {
-      debugPrint("📜 [MobileSDK] Scroll threshold reached");
-      MobileSdkFlutter.triggerScroll(scrollY: _controller.offset.toInt());
-      _triggered = true;
+    final currentScrollY = _controller.offset.toInt();
+
+    // 1. If user scrolls back up above the threshold, reset the lock
+    if (_hasTriggered && currentScrollY < widget.threshold - 50) {
+      _hasTriggered = false;
+    }
+
+    // 2. Trigger exactly ONCE when crossing the threshold going down
+    if (!_hasTriggered && currentScrollY >= widget.threshold) {
+      _hasTriggered = true; // Lock it instantly!
       
-      // Reset trigger after 3 seconds (Cool-down)
-      Future.delayed(const Duration(seconds: 3), () {
-        if (mounted) setState(() => _triggered = false);
-      });
+      debugPrint("📜 [MobileSDK] Scroll threshold reached: $currentScrollY");
+      MobileSdkFlutter.triggerScroll(scrollY: 9999);
     }
   }
 

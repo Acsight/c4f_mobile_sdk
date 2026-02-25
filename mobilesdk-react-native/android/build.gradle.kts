@@ -72,7 +72,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.acsight"
                 artifactId = "mobilesdk-react-native"
-                version = "1.2.13"
+                version = "1.2.17"
 
                 pom {
                     name.set("Survey SDK React Native")

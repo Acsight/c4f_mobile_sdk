@@ -1,4 +1,4 @@
-package com.c4f.mobilesdk_flutter
+package com.c4f.cloud4feed_mobilesdk_flutter
 
 import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -18,7 +18,7 @@ class MobileSdkFlutterPlugin: FlutterPlugin, MethodCallHandler, ActivityAware {
     private var activity: Activity? = null
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "mobilesdk_flutter")
+        channel = MethodChannel(flutterPluginBinding.binaryMessenger, "cloud4feed_mobilesdk_flutter")
         channel.setMethodCallHandler(this)
         Log.d("MobileSDKFlutter", "🔌 Plugin attached via MethodChannel")
     }

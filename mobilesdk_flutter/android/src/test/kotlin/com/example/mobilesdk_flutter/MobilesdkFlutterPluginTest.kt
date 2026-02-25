@@ -1,4 +1,4 @@
-package com.c4f.mobilesdk_flutter
+package com.c4f.cloud4feed_mobilesdk_flutter
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
