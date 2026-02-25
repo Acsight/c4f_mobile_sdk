@@ -21,3 +21,7 @@
 ## 1.2.13
 
 - changed package name to cloud4feed_mobilesdk_flutter
+
+## 1.2.13
+
+- changed version
