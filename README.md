@@ -1,4 +1,10 @@
-# 🇬🇧 MobileSDK - Technical Documentation (v2.1)
+Here is the fully updated `README.md`. I have revised it to reflect the **latest architectural changes** we made, including the dynamic parameter initialization, the updated React Native `autoSetupReact` flow, the switch to `accessibilityLabel`, and the new dynamic `SurveyScrollView` & `MobileSdkWrapper` for Flutter.
+
+I updated both the English and Turkish sections to keep them perfectly synced. You can copy and paste this directly into your GitHub repository!
+
+---
+
+# 🇬🇧 MobileSDK - Technical Documentation (v2.2)
 
 ## 1. Architecture & File Structure
 
@@ -19,17 +25,17 @@ Handles survey rules, API requests, queues, and displaying views (Dialogs/Bottom
 ```
 
 **2. React Native Bridge (The Scanner)**
-Uses "Continuous Scanning" to detect UI changes in React Native.
+Uses native interceptors to detect UI interactions without slowing down the JS thread.
 
 ```text
 /mobilesdk-react-native/android/src/.../reactnative/
 ├── MobileSDKPackage.kt
-└── MobileSDKModule.kt            # 🕵️ SCANNER. Runs 'GlobalLayoutListener' to find views.
+└── MobileSDKModule.kt            # 🕵️ SCANNER. Runs 'GlobalTouchInterceptor' to find accessibility labels.
 
 ```
 
 **3. Flutter Bridge (The Signal Receiver)**
-Since Flutter draws its own pixels, this module receives signals from Dart widgets.
+Since Flutter draws its own pixels on a flat canvas, this module receives signals from Dart wrappers.
 
 ```text
 /mobilesdk_flutter/android/src/.../mobilesdk_flutter/
@@ -45,11 +51,11 @@ Since Flutter draws its own pixels, this module receives signals from Dart widge
 
 What happens when `autoSetup()` is called?
 
-1. **Platform Side (JS/Dart):** Calls `autoSetup`.
+1. **Platform Side (JS/Dart):** Calls `autoSetup` (or `autoSetupReact`).
 2. **Native Side:**
 * **Android:** Attaches `ActivityLifecycleCallbacks` to track App Start/Exit.
-* **React Native:** Starts a `GlobalLayoutListener` to scan the View Tree for `nativeID`.
-* **Flutter:** Sets up the communication channel, waiting for signals.
+* **React Native:** Starts the `GlobalTouchInterceptor` to scan touched views for `accessibilityLabel` matching survey rules.
+* **Flutter:** Sets up the communication channel, waiting for layout and scroll signals.
 
 
 
@@ -59,17 +65,18 @@ When a user clicks a button marked for a survey:
 
 1. **User Action:** User touches the button.
 2. **Detection:**
-* **Android/RN:** The injected `OnTouchListener` intercepts the touch.
+* **Android:** Native listener intercepts the tag.
+* **React Native:** Touch interceptor catches the `accessibilityLabel`.
 * **Flutter:** The `SurveyTrigger` widget captures the `onPointerUp` event.
 
 
 3. **Signal:** The ID (e.g., `"btn_checkout"`) is sent to `MobileSDK.kt`.
 4. **Core Logic:**
 * Checks Config: Is there a survey for `"btn_checkout"`?
-* Checks Rules: Is user excluded? Is cooling period active?
+* Checks Rules: Is user excluded? Is the cooldown period active?
 
 
-5. **Result:** If valid, the `SurveyDialogFragment` or `BottomSheet` is launched on top of the Activity.
+5. **Result:** If valid, the `SurveyDialogFragment` or `BottomSheet` is launched safely on top of the Activity.
 
 ---
 
@@ -81,17 +88,20 @@ Direct access. No bridge needed.
 
 ```kotlin
 // MainActivity.kt
-MobileSDK.initialize(this, "API_KEY")
+// 1. Initialize (Supports optional user params directly or via SharedPreferences)
+MobileSDK.initializeWithBridgeParams(this, "API_KEY", "userID", Pair("rank", "chef"))
+
+// 2. Setup Auto-Detection
 MobileSDK.getInstance().autoSetup(this)
 
-// XML Layout
-<Button android:tag="checkout_button" ... />
+// 3. XML Layout Trigger
+<Button android:id="@+id/checkout_button" ... />
 
 ```
 
 ### ⚛️ React Native
 
-Uses the **Magic Scanner** to find Native IDs.
+Uses the **Native Interceptor** to find component labels smoothly.
 
 **App.js:**
 
@@ -101,50 +111,62 @@ const { MobileSDK } = NativeModules;
 
 // 1. Init
 useEffect(() => {
-  MobileSDK.initialize("API_KEY");
-  MobileSDK.autoSetup();
+   const init = async () => {
+      await MobileSDK.initializeWithParams("API_KEY", ["userID", { rank: "chef" }]);
+      // Wait for native config to download, then setup triggers
+      setTimeout(() => MobileSDK.autoSetupReact(), 1000); 
+   };
+   init();
 }, []);
 
 // 2. Navigation
 <NavigationContainer onStateChange={(state) => {
    const route = state.routes[state.index].name;
-   MobileSDK.triggerNavigationSurvey(route);
+   MobileSDK.trackScreenView(route); // Required for context
 }}>
 
 // 3. UI
-<TouchableOpacity nativeID="checkout_button">...</TouchableOpacity>
+<TouchableOpacity accessibilityLabel="checkout_button">...</TouchableOpacity>
 
 ```
 
-### 💙 Flutter (New!)
+### 💙 Flutter
 
-Uses **Smart Widgets** to signal the Native SDK.
+Uses **Smart Widgets** to signal the Native SDK. The threshold logic is dynamically handled by the backend!
 
 **main.dart:**
 
 ```dart
-import 'package:mobilesdk_flutter/mobilesdk_flutter.dart';
+import 'package:cloud4feed_mobilesdk_flutter/mobilesdk_flutter.dart';
 
-// 1. Init
-await MobileSdkFlutter.initialize('API_KEY');
-await MobileSdkFlutter.autoSetup();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-// 2. Button Trigger
+  // 1. Init with optional parameters
+  await MobileSdkFlutter.initialize('API_KEY', params: ['userID', {'rank': 'chef'}]);
+  await MobileSdkFlutter.autoSetup();
+
+  runApp(
+    // 2. Global Scroll Tracker (Optional: Automatically tracks all lists)
+    MobileSdkWrapper(
+      child: MaterialApp(
+        // 3. Navigation Tracker
+        navigatorObservers: [SurveyNavigationObserver()],
+        home: const MyApp(),
+      ),
+    )
+  );
+}
+
+// 4. Button Trigger
 SurveyTrigger(
   triggerId: "checkout_button",
   child: ElevatedButton(child: Text("Buy"), onPressed: (){}),
 )
 
-// 3. Scroll Trigger
+// 5. Targeted Scroll Trigger (If not using MobileSdkWrapper)
 SurveyScrollView(
-  threshold: 500,
-  child: Column(...),
-)
-
-// 4. Navigation
-MaterialApp(
-  navigatorObservers: [SurveyNavigationObserver()],
-  ...
+  child: Column(...), // Threshold is checked automatically by Native backend!
 )
 
 ```
@@ -153,18 +175,18 @@ MaterialApp(
 
 ## 4. Debugging & Testing
 
-Filter Logcat by the tag: **`MobileSDK`**
+Filter Logcat by the tag: **`MobileSDK`** or **`MobileSDKFlutter`**
 
 * `👀 Continuous Scanning Started`: React Native scanner is active.
 * `👆 Auto-Detected Click`: A click was caught and sent to Core.
 * `✅ Found specific survey match`: Logic successful, survey opening.
-* `❌ Cannot show survey`: Rules prevented display (Cooldown, Frequency Cap).
+* `❌ Cannot show survey`: Rules prevented display (Cooldown, Frequency Cap, etc.).
 
 ---
 
 ---
 
-# 🇹🇷 MobileSDK - Teknik Dokümantasyon (v2.1)
+# 🇹🇷 MobileSDK - Teknik Dokümantasyon (v2.2)
 
 ## 1. Mimari ve Dosya Yapısı
 
@@ -185,17 +207,17 @@ Anket kuralları, API istekleri, kuyruk yönetimi ve görünüm (Dialog/BottomSh
 ```
 
 **2. React Native Bridge (Tarayıcı)**
-React Native arayüzündeki değişimleri algılamak için "Sürekli Tarama" kullanır.
+JS thread'ini yavaşlatmadan arayüz etkileşimlerini algılamak için yerel (native) dinleyiciler kullanır.
 
 ```text
 /mobilesdk-react-native/android/src/.../reactnative/
 ├── MobileSDKPackage.kt
-└── MobileSDKModule.kt            # 🕵️ TARAYICI. 'GlobalLayoutListener' ile View ağacını gezer.
+└── MobileSDKModule.kt            # 🕵️ TARAYICI. 'GlobalTouchInterceptor' ile accessibility etiketlerini yakalar.
 
 ```
 
 **3. Flutter Bridge (Sinyal Alıcı)**
-Flutter kendi piksellerini çizdiği için, bu modül Dart widget'larından gelen sinyalleri dinler.
+Flutter kendi piksellerini düz bir tuval üzerine çizdiği için, bu modül Dart widget'larından gelen sinyalleri dinler.
 
 ```text
 /mobilesdk_flutter/android/src/.../mobilesdk_flutter/
@@ -211,31 +233,32 @@ Flutter kendi piksellerini çizdiği için, bu modül Dart widget'larından gele
 
 `autoSetup()` çağrıldığında arka planda ne olur?
 
-1. **Platform Tarafı (JS/Dart):** `autoSetup` komutunu gönderir.
+1. **Platform Tarafı (JS/Dart):** `autoSetup` (veya `autoSetupReact`) komutunu gönderir.
 2. **Native Tarafı:**
 * **Android:** Uygulama Açılış/Kapanışlarını takip etmek için `ActivityLifecycleCallbacks` başlatır.
-* **React Native:** View Ağacını tarayıp `nativeID` bulmak için `GlobalLayoutListener` başlatır.
-* **Flutter:** İletişim kanalını açar ve sinyal beklemeye başlar.
+* **React Native:** Dokunulan bileşenlerdeki `accessibilityLabel` etiketlerini anket kurallarıyla eşleştirmek için `GlobalTouchInterceptor` başlatır.
+* **Flutter:** İletişim kanalını açar ve arayüz/scroll sinyallerini beklemeye başlar.
 
 
 
 ### Senaryo B: Buton Tıklaması (Trigger Flow)
 
-Kullanıcı tanımlı bir butona tıkladığında:
+Kullanıcı anket tanımlı bir butona tıkladığında:
 
 1. **Kullanıcı Eylemi:** Ekrana dokunur.
 2. **Algılama:**
-* **Android/RN:** Enjekte edilen `OnTouchListener` dokunuşu yakalar.
+* **Android:** Native listener tag'i yakalar.
+* **React Native:** Touch interceptor `accessibilityLabel`'ı yakalar.
 * **Flutter:** `SurveyTrigger` widget'ı `onPointerUp` olayını yakalar.
 
 
 3. **Sinyal:** Buton ID'si (örn: `"btn_checkout"`) `MobileSDK.kt`'ye iletilir.
 4. **Core Mantık:**
 * Config Kontrolü: Bu ID için bir anket var mı?
-* Kural Kontrolü: Kullanıcı engelli mi? Soğuma süresi bitti mi?
+* Kural Kontrolü: Kullanıcı engelli mi? Soğuma süresi (cooldown) aktif mi?
 
 
-5. **Sonuç:** Her şey uygunsa, Activity üzerinde `SurveyDialogFragment` veya `BottomSheet` açılır.
+5. **Sonuç:** Her şey uygunsa, Activity üzerinde güvenli bir şekilde `SurveyDialogFragment` veya `BottomSheet` açılır.
 
 ---
 
@@ -247,17 +270,20 @@ Köprüye gerek yoktur. Doğrudan erişim sağlanır.
 
 ```kotlin
 // MainActivity.kt
-MobileSDK.initialize(this, "API_KEY")
+// 1. Başlatma (Parametreleri doğrudan veya SharedPreferences üzerinden okuyabilir)
+MobileSDK.initializeWithBridgeParams(this, "API_KEY", "userID", Pair("rank", "chef"))
+
+// 2. Otomatik Algılamayı Kur
 MobileSDK.getInstance().autoSetup(this)
 
-// XML Layout
-<Button android:tag="checkout_button" ... />
+// 3. XML Layout Tetikleyici
+<Button android:id="@+id/checkout_button" ... />
 
 ```
 
 ### ⚛️ React Native
 
-Native ID'leri bulmak için **Sihirli Tarayıcı** kullanır.
+Bileşen etiketlerini sorunsuz bulmak için **Native Interceptor** kullanır.
 
 **App.js:**
 
@@ -267,50 +293,62 @@ const { MobileSDK } = NativeModules;
 
 // 1. Başlatma
 useEffect(() => {
-  MobileSDK.initialize("API_KEY");
-  MobileSDK.autoSetup();
+   const init = async () => {
+      await MobileSDK.initializeWithParams("API_KEY", ["userID", { rank: "chef" }]);
+      // Native konfigürasyonun inmesini bekle, sonra tetikleyicileri kur
+      setTimeout(() => MobileSDK.autoSetupReact(), 1000); 
+   };
+   init();
 }, []);
 
 // 2. Navigasyon
 <NavigationContainer onStateChange={(state) => {
    const route = state.routes[state.index].name;
-   MobileSDK.triggerNavigationSurvey(route);
+   MobileSDK.trackScreenView(route); // Bağlam (context) tespiti için zorunludur
 }}>
 
 // 3. Arayüz
-<TouchableOpacity nativeID="checkout_button">...</TouchableOpacity>
+<TouchableOpacity accessibilityLabel="checkout_button">...</TouchableOpacity>
 
 ```
 
-### 💙 Flutter (Yeni!)
+### 💙 Flutter
 
-Native SDK'ya sinyal göndermek için **Akıllı Widget'lar** kullanır.
+Native SDK'ya sinyal göndermek için **Akıllı Widget'lar** kullanır. Scroll derinliği (threshold) doğrudan backend üzerinden dinamik yönetilir!
 
 **main.dart:**
 
 ```dart
-import 'package:mobilesdk_flutter/mobilesdk_flutter.dart';
+import 'package:cloud4feed_mobilesdk_flutter/mobilesdk_flutter.dart';
 
-// 1. Başlatma
-await MobileSdkFlutter.initialize('API_KEY');
-await MobileSdkFlutter.autoSetup();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-// 2. Buton Tetikleyici
+  // 1. Opsiyonel parametrelerle başlatma
+  await MobileSdkFlutter.initialize('API_KEY', params: ['userID', {'rank': 'chef'}]);
+  await MobileSdkFlutter.autoSetup();
+
+  runApp(
+    // 2. Global Scroll Takipçisi (Opsiyonel: Tüm listeleri otomatik takip eder)
+    MobileSdkWrapper(
+      child: MaterialApp(
+        // 3. Navigasyon Takipçisi
+        navigatorObservers: [SurveyNavigationObserver()],
+        home: const MyApp(),
+      ),
+    )
+  );
+}
+
+// 4. Buton Tetikleyici
 SurveyTrigger(
   triggerId: "checkout_button",
   child: ElevatedButton(child: Text("Satın Al"), onPressed: (){}),
 )
 
-// 3. Scroll Tetikleyici
+// 5. Hedefli Scroll Tetikleyici (MobileSdkWrapper kullanılmıyorsa)
 SurveyScrollView(
-  threshold: 500,
-  child: Column(...),
-)
-
-// 4. Navigasyon
-MaterialApp(
-  navigatorObservers: [SurveyNavigationObserver()],
-  ...
+  child: Column(...), // Threshold değeri Native backend tarafından otomatik kontrol edilir!
 )
 
 ```
@@ -319,9 +357,9 @@ MaterialApp(
 
 ## 4. Test ve Debugging
 
-Logcat üzerinden **`MobileSDK`** etiketiyle filtreleyin.
+Logcat üzerinden **`MobileSDK`** veya **`MobileSDKFlutter`** etiketiyle filtreleyin.
 
 * `👀 Continuous Scanning Started`: React Native tarayıcısı aktif.
 * `👆 Auto-Detected Click`: Tıklama yakalandı ve Core'a iletildi.
 * `✅ Found specific survey match`: Mantık başarılı, anket açılıyor.
-* `❌ Cannot show survey`: Kurallar gösterimi engelledi (Soğuma süresi vb.).
+* `❌ Cannot show survey`: Kurallar gösterimi engelledi (Soğuma süresi, gösterim sınırı vb.).
