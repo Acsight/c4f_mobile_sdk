@@ -3,6 +3,9 @@
 /.kotlin/
 /.gradle/
 
+/mobileSDK/build
+/mobilesdk-react-native/android/build
+
 # Android Studio
 /.idea/
 *.iml
@@ -25,6 +28,8 @@ Thumbs.db
 /.cxx
 *.apk
 *.aar
+*.tgz
+/mobilesdk-react-native/*.tgz
 
 # Kotlin
 *.kotlin_module
